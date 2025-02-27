@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        instance = this;
+        instance = this; // 안나오냐 ?
     }
 
     void Update()
