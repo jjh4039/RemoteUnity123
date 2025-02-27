@@ -6,10 +6,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
         instance = this; //fucking  singleton
 
 
-    }
+   }
 
     void Update()
     {
