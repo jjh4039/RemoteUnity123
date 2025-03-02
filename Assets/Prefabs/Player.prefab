@@ -130,12 +130,13 @@ MonoBehaviour:
   spriteRen: {fileID: 0}
   anim: {fileID: 0}
   leftRight: 0
-  speed: 7
-  jumpPower: 6
+  isGround: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  isGround: 0
+    m_Bits: 64
+  speed: 7
+  jumpPower: 7
+  readyFruits: 
 --- !u!50 &2857541952811358491
 Rigidbody2D:
   serializedVersion: 5

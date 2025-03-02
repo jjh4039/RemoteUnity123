@@ -8,10 +8,10 @@ public class Player : MonoBehaviour
     [HideInInspector] public CapsuleCollider2D colider;
     [HideInInspector] public SpriteRenderer spriteRen;
     [HideInInspector] public Animator anim;
-    [HideInInspector]public float leftRight;
-    [HideInInspector] public LayerMask groundLayer;
+    [HideInInspector] public float leftRight;
     [HideInInspector] public bool isGround;
-    public int speed;
+    public LayerMask groundLayer;
+    public int speed;   
     public float jumpPower;
     public int[] readyFruits;
 
