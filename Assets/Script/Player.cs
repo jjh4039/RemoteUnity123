@@ -1,13 +1,19 @@
+using JetBrains.Annotations;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D rigid;
-    public CapsuleCollider2D colider;
-    public SpriteRenderer spriteRen;
-    public Animator anim;
-    public float leftRight;
+    [HideInInspector] public Rigidbody2D rigid;
+    [HideInInspector] public CapsuleCollider2D colider;
+    [HideInInspector] public SpriteRenderer spriteRen;
+    [HideInInspector] public Animator anim;
+    [HideInInspector]public float leftRight;
+    [HideInInspector] public LayerMask groundLayer;
+    [HideInInspector] public bool isGround;
     public int speed;
+    public float jumpPower;
+    public int[] readyFruits;
 
     void Start()
     {
@@ -28,5 +34,12 @@ public class Player : MonoBehaviour
         if (leftRight != 0) anim.SetBool("Move", true);
         else anim.SetBool("Move", false);
 
+        if ((Input.GetKeyDown(KeyCode.Space)) && isGround == true) // 테스트 용 점프
+        {
+            rigid.linearVelocityY = jumpPower;
+        }
+
+        if (Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - 1f), groundLayer)) {isGround = true; anim.SetBool("Jump", false); } // isGround 관리
+        else { isGround = false; anim.SetBool("Jump", true); }
     }
 }
