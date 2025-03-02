@@ -2063,6 +2063,7 @@ MonoBehaviour:
   Colider: {fileID: 0}
   SpawnPoint: {x: 0, y: 0, z: 0}
   Check: {fileID: 0}
+  gameobject: {fileID: 0}
   spawner: {fileID: 62420685}
 --- !u!1 &2088616788 stripped
 GameObject:
