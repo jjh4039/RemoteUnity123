@@ -8,12 +8,13 @@ public class CheckPoint : MonoBehaviour
     public BoxCollider2D Colider;
     public Vector3 SpawnPoint;
     public GameObject Check;
+    public GameObject gameobject;
     public Spawner spawner;
 
     void Start()
     {
         Colider = GetComponent<BoxCollider2D>();
-        spawner = GetComponent<Spawner>();
+        spawner = gameobject.GetComponent<Spawner>();
         Check = GetComponent<GameObject>();
     }
 
