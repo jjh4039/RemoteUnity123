@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class Fruits : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public enum fruitsId
     {
-        
+        Apple,
+        Banana
     }
+    public fruitsId myid;
 
-    // Update is called once per frame
-    void Update()
+    public void EatFruit()
     {
-        
+        switch (myid)
+        {
+            case fruitsId.Apple:
+                GameManager.Instance.fruitManager.isEatApple = true;
+                Debug.Log("Apple");
+                break;
+            case fruitsId.Banana:
+                Debug.Log("Banana");
+                break;
+        }
     }
 }
