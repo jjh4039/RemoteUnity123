@@ -35,10 +35,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         leftRight = Input.GetAxisRaw("Horizontal");
-        if (isDash == false) rigid.linearVelocity = new Vector2(leftRight * speed, rigid.linearVelocityY); // 기본 좌우이동
 
-        if (leftRight < 0) spriteRen.flipX = true;
-        else if (leftRight > 0) spriteRen.flipX = false; // 이동하는 방향 바라보기
+        if (isDash == false) // 대쉬 중 기본 이동 로직 및 스프라이트 방향 전환 X  
+        { 
+            rigid.linearVelocity = new Vector2(leftRight * speed, rigid.linearVelocityY); // 기본 좌우이동
+
+            if (leftRight < 0) spriteRen.flipX = true;
+            else if (leftRight > 0) spriteRen.flipX = false; // 이동하는 방향 바라보기
+        }
 
         if (leftRight != 0) anim.SetBool("Move", true);
         else anim.SetBool("Move", false);
@@ -131,9 +135,10 @@ public class Player : MonoBehaviour
     IEnumerator Dash()
     {
         isDash = true;
-        rigid.linearVelocity = new Vector2(leftRight * speed * 2f, rigid.linearVelocityY);
-        yield return new WaitForSeconds(0.1f);
+        anim.SetBool("Dash", true);
+        rigid.linearVelocity = new Vector2(leftRight * speed * 2.5f, rigid.linearVelocityY);
+        yield return new WaitForSeconds(0.2f);
         isDash = false;
-        Debug.Log("대쉬");
+        anim.SetBool("Dash", false);
     }
 }
