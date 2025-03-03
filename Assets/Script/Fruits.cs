@@ -18,8 +18,11 @@ public class Fruits : MonoBehaviour
                 Debug.Log("Apple");
                 break;
             case fruitsId.Banana:
+                GameManager.Instance.fruitManager.isEatBanana = true;
                 Debug.Log("Banana");
                 break;
         }
+
+        Destroy(gameObject);
     }
 }

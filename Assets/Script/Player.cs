@@ -19,9 +19,11 @@ public class Player : MonoBehaviour
     public float jumpPower;
     public int[] readyFruits;
     public int recentUseFruit;
+    public bool isDash;
 
     void Start()
     {
+        isDash = false;
         readyFruits = new int[3]; // 과일 슬롯 개수 (현재 3)
         for (int k = 0; k < readyFruits.Length; k++) { readyFruits[k] = 0; }
         rigid = GetComponent<Rigidbody2D>();
@@ -33,7 +35,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         leftRight = Input.GetAxisRaw("Horizontal");
-        rigid.linearVelocity = new Vector2(leftRight * speed, rigid.linearVelocityY); // 기본 좌우이동
+        if (isDash == false) rigid.linearVelocity = new Vector2(leftRight * speed, rigid.linearVelocityY); // 기본 좌우이동
 
         if (leftRight < 0) spriteRen.flipX = true;
         else if (leftRight > 0) spriteRen.flipX = false; // 이동하는 방향 바라보기
@@ -51,6 +53,11 @@ public class Player : MonoBehaviour
             ReadyFruit(1);
         }
 
+        if ((Input.GetKeyDown(KeyCode.K)) && GameManager.Instance.fruitManager.isEatBanana == true) // 바나나(2) 사용 
+        {
+            ReadyFruit(2);
+        }
+
         if (Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - 1f), groundLayer)) { isGround = true; anim.SetBool("Jump", false); } // isGround 관리
         else { isGround = false; anim.SetBool("Jump", true); }
     }
@@ -64,7 +71,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void ReadyFruit(int fruitId) // 과일 준비
+    void ReadyFruit(int fruitId) // 과일 준비 (과일 번호)
     {
         for (int i = 0; i <= readyFruits.Length; i++)
         {
@@ -97,23 +104,36 @@ public class Player : MonoBehaviour
                             rigid.linearVelocityY = jumpPower;
                             recentUseFruit = 1;           
                             break;
+                        case 2:
+                            StartCoroutine(Dash());
+                            recentUseFruit = 2;
+                            break;
                         default:
                             Debug.Log("과일 사용 버그");
                             break;
                     }
-                    StartCoroutine(RecentFruitReset());
+                    StopCoroutine("RecentFruitReset"); // 중복 초기화 금지 용도 
+                    StartCoroutine("RecentFruitReset"); // 연속 사용 금지 코루틴 시작
                     readyFruits[i] = 0;
                     break;
                 }
             }
         }
-        Debug.Log(readyFruits[0].ToString() + readyFruits[1].ToString() + readyFruits[2].ToString());
     }
 
-    IEnumerator RecentFruitReset() // 연속 사용 금지 매커니즘
+    IEnumerator RecentFruitReset() // 연속 사용 금지 코루틴
     {
         yield return new WaitForSeconds(2f);
         recentUseFruit = 0;
         Debug.Log("최근 과일 사용 기록 초기화");
+    }
+
+    IEnumerator Dash()
+    {
+        isDash = true;
+        rigid.linearVelocity = new Vector2(leftRight * speed * 2f, rigid.linearVelocityY);
+        yield return new WaitForSeconds(0.1f);
+        isDash = false;
+        Debug.Log("대쉬");
     }
 }
