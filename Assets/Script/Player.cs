@@ -14,12 +14,14 @@ public class Player : MonoBehaviour
     [HideInInspector] public float leftRight;
     [HideInInspector] public bool isGround;
     [HideInInspector] public Fruits fruits;
+    [HideInInspector] public IntroducePosition iPos;
     public LayerMask groundLayer;
     public int speed;
     public float jumpPower;
     public int[] readyFruits;
     public int recentUseFruit;
     public bool isDash;
+    public bool isMove;
 
     void Start()
     {
@@ -34,7 +36,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        leftRight = Input.GetAxisRaw("Horizontal");
+        if (isMove == true) leftRight = Input.GetAxisRaw("Horizontal");
+
 
         if (isDash == false) // 대쉬 중 기본 이동 로직 및 스프라이트 방향 전환 X  
         { 
@@ -72,6 +75,12 @@ public class Player : MonoBehaviour
         {
             fruits = collision.gameObject.GetComponent<Fruits>();
             fruits.EatFruit();
+        }
+
+        if(collision.gameObject.tag == "Introduce")
+        {
+            iPos = collision.gameObject.GetComponent<IntroducePosition>();
+            iPos.introduceStart();
         }
     }
 
