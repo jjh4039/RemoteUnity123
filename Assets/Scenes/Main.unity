@@ -250,11 +250,11 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: -10}
+  m_LocalPosition: {x: 3, y: 0.26999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1104962030}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &647157051
 GameObject:
@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 647157051}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5294561, y: -1.9103465, z: 0.06940824}
+  m_LocalPosition: {x: 0, y: 0, z: 0.06940824}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -374,7 +374,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647157051}
   serializedVersion: 8
-  lengthInSec: 0.15
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -1203,7 +1203,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 500
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5201,7 +5201,6 @@ GameObject:
   m_Component:
   - component: {fileID: 802068421}
   - component: {fileID: 802068420}
-  - component: {fileID: 802068419}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5209,20 +5208,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &802068419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802068418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6cd49aba137d694dbb9eeaa46cbd23e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEatApple: 0
-  isEatBanana: 0
 --- !u!114 &802068420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5235,7 +5220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acb775cc4ca6f24b8dbf2a8222473c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitManager: {fileID: 802068419}
+  fruitManager: {fileID: 1734729053}
   player: {fileID: 1104962025}
 --- !u!4 &802068421
 Transform:
@@ -5279,7 +5264,7 @@ Transform:
   m_GameObject: {fileID: 859492531}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5294561, y: -1.9103465, z: 0.06940824}
+  m_LocalPosition: {x: 0, y: 0, z: 0.06940824}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5370,7 +5355,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859492531}
   serializedVersion: 8
-  lengthInSec: 0.15
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -6199,7 +6184,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 500
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -10145,7 +10130,8 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -5728686177044832811, guid: b1f24b3bc2e2f1d4b858657ad5c115a0, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8597749520519995209, guid: 76342f9846440c746b88f368208745b9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -10247,10 +10233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 488546060525074639, guid: 9b1789a47e6d9274f829400f11b63210, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 519420032}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b1789a47e6d9274f829400f11b63210, type: 3}
 --- !u!114 &1104962025 stripped
@@ -10264,11 +10247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25c825668075bd4ebd8ee40d123476c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1104962030 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 488546060525074639, guid: 9b1789a47e6d9274f829400f11b63210, type: 3}
-  m_PrefabInstance: {fileID: 1084631305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1284529609
 GameObject:
   m_ObjectHideFlags: 0
@@ -11545,6 +11523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1734729052}
+  - component: {fileID: 1734729053}
   m_Layer: 0
   m_Name: ParticleManager
   m_TagString: Untagged
@@ -11569,6 +11548,24 @@ Transform:
   - {fileID: 859492532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1734729053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734729051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6cd49aba137d694dbb9eeaa46cbd23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEatApple: 0
+  isEatBanana: 0
+  FruitParticle:
+  - {fileID: 0}
+  - {fileID: 647157054}
+  - {fileID: 859492534}
 --- !u!1001 &8505198645685667520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11633,6 +11630,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 519420032}
   - {fileID: 802068421}
   - {fileID: 8505198645685667520}
   - {fileID: 939205109}

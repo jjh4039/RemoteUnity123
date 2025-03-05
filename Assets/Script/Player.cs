@@ -116,7 +116,8 @@ public class Player : MonoBehaviour
                             Debug.Log("과일 사용 버그");
                             break;
                     }
-                    StopCoroutine("RecentFruitReset"); // 중복 초기화 금지 용도 
+                    GameManager.Instance.fruitManager.FruitUseParticle(recentUseFruit);
+                    StopCoroutine("RecentFruitReset"); // 중복 초기화 금지 용도
                     StartCoroutine("RecentFruitReset"); // 연속 사용 금지 코루틴 시작
                     readyFruits[i] = 0;
                     break;
