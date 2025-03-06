@@ -28,6 +28,9 @@ public class SpawnManager : MonoBehaviour
         {
             LivingPlayer = Instantiate(player, SpawnPoint, Quaternion.identity);
             LivingPlayer.name = "Player";
+            Player p1 = LivingPlayer.GetComponent<Player>();
+            GameManager.Instance.player = p1;
+            p1.enabled = false;
             isDead = false;
         }
     }
@@ -35,7 +38,8 @@ public class SpawnManager : MonoBehaviour
     {
         if (!isDead)
         {
-            Destroy(LivingPlayer);
+            Destroy(LivingPlayer.gameObject);
+            GameManager.Instance.player = null;
             isDead = true;
         }
     }

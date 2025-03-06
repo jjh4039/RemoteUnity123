@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 488546060525074639}
   - component: {fileID: 1028823098896541238}
   - component: {fileID: 7592428743658398035}
+  - component: {fileID: 3176442116636700634}
   - component: {fileID: 9124744888804213397}
   - component: {fileID: 2857541952811358491}
   - component: {fileID: 6202079191152541271}
@@ -113,7 +114,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9124744888804213397
+--- !u!114 &3176442116636700634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4152787407729107014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a25c825668075bd4ebd8ee40d123476c, type: 3}
+  m_Script: {fileID: 11500000, guid: fcb3200eddd899c4993fe2ae9df2a84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 0}
@@ -136,7 +137,36 @@ MonoBehaviour:
     m_Bits: 64
   speed: 7
   jumpPower: 7
+  isMove: 1
+--- !u!114 &9124744888804213397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152787407729107014}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25c825668075bd4ebd8ee40d123476c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigid: {fileID: 0}
+  colider: {fileID: 0}
+  spriteRen: {fileID: 0}
+  anim: {fileID: 0}
+  leftRight: 0
+  isGround: 0
+  fruits: {fileID: 0}
+  iPos: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  speed: 7
+  jumpPower: 7
   readyFruits: 
+  recentUseFruit: 0
+  isDash: 0
+  isMove: 1
 --- !u!50 &2857541952811358491
 Rigidbody2D:
   serializedVersion: 5

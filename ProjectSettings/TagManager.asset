@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fruits
   - Introduce
+  - Enemy
   layers:
   - Default
   - TransparentFX
