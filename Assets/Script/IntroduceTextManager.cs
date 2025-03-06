@@ -13,16 +13,8 @@ public class IntroduceTextManager : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.player.isMove = false;
-        StartCoroutine(FristStep());
-        introduceText.color = Color.black;
-
-        texts[0] = "안녕하세요!";
-        texts[1] = "우선 저 앞으로\n달려볼까요?";
-        texts[2] = "방향키를 눌러\n좌우로 이동하기";
-        texts[3] = "잘했어요!";
-        texts[4] = "어.. 근데\n저 사과는 뭐죠? ";
-        texts[5] = "'점프를 이용할 수 있다'\n라고 적혀있는데...";
-        texts[6] = "사과를 향해\n이동하기";
+        StartCoroutine(FristStep()); // 튜토리얼 시작
+        TextSet(); // String Setting
     }
 
     public void Update()
@@ -63,6 +55,11 @@ public class IntroduceTextManager : MonoBehaviour
         isQuestClear = false;
         StartCoroutine(Say(6));
         GameManager.Instance.player.isMove = true;
+    }
+
+    IEnumerator ThirdStep()
+    {
+        yield return new WaitForSeconds(1.9f);
     }
 
     IEnumerator Say(int TextIndex) // 대화용
@@ -131,6 +128,18 @@ public class IntroduceTextManager : MonoBehaviour
             canvasGroup.alpha = i;
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    public void TextSet()
+    {
+        introduceText.color = Color.black;
+        texts[0] = "안녕하세요!";
+        texts[1] = "우선 저 앞으로\n달려볼까요?";
+        texts[2] = "방향키를 눌러\n좌우로 이동하기";
+        texts[3] = "잘했어요!";
+        texts[4] = "어.. 근데\n저 사과는 뭐죠? ";
+        texts[5] = "'점프를 이용할 수 있다'\n라고 적혀있는데...";
+        texts[6] = "사과를 향해\n이동하기";
     }
 }
 
