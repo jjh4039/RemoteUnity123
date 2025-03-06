@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public FruitManager fruitManager;
     public Player player;
     public IntroduceTextManager introduceTextManager;
+    public Bar bar;
 
     void Awake()
     {

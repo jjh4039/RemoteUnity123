@@ -9,6 +9,7 @@ public class IntroduceTextManager : MonoBehaviour
     public CanvasGroup canvasGroup;
     public string[] texts;
     public bool isQuestClear;
+    public GameObject bar;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class IntroduceTextManager : MonoBehaviour
         yield return new WaitForSeconds(2.9f);
         isQuestClear = false;
         StartCoroutine(Say(2));
+        yield return new WaitForSeconds(1.5f);
         GameManager.Instance.player.isMove = true;
     }
 
@@ -54,11 +56,13 @@ public class IntroduceTextManager : MonoBehaviour
         yield return new WaitForSeconds(4f);
         isQuestClear = false;
         StartCoroutine(Say(6));
+        yield return new WaitForSeconds(1.1f);
         GameManager.Instance.player.isMove = true;
     }
 
     IEnumerator ThirdStep()
     {
+        bar.SetActive(true);
         yield return new WaitForSeconds(1.9f);
     }
 
