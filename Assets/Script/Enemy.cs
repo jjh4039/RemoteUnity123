@@ -3,11 +3,19 @@ using UnityEngine.Tilemaps;
 
 public class Enemy : MonoBehaviour
 {
-    public TilemapCollider2D collider;
+ 
+    public object collider;
 
     void Start()
     {
-        collider = GetComponent<TilemapCollider2D>();
+        if(tag == "Traps")
+        {
+            collider = GetComponent<TilemapCollider2D>();
+        }
+        else if(tag == "Enemy")
+        {
+            collider = GetComponent<Collider2D>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
