@@ -80,6 +80,10 @@ public class Bar : MonoBehaviour
             {
                 BarsColor[i].color = new Color(1f, 0.3f, 0.24f, 1f);
             }
+            else if(BarsColor[i].color == new Color(1f, 1f, 0.71f, 1f))
+            {
+                BarsColor[i].color = new Color(1f, 1f, 0f, 1f);
+            }
         }
     }
 }

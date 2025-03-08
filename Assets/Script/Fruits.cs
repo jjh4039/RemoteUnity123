@@ -27,7 +27,8 @@ public class Fruits : MonoBehaviour
                 break;
             case fruitsId.Banana:
                 GameManager.Instance.fruitManager.isEatBanana = true;
-                Debug.Log("Banana");
+                GameManager.Instance.introduceTextManager.StartCoroutine("FifthStep");
+                GameManager.Instance.player.MoveStop();
                 break;
         }
         Invoke("EatDel", 0.55f);

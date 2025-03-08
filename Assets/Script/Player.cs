@@ -98,7 +98,15 @@ public class Player : MonoBehaviour
             if (readyFruits[i] == 0)
             {
                 readyFruits[i] = fruitId;
-                GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 0.65f, 0.62f, 1f);
+                switch (fruitId)
+                {
+                    case 1:
+                        GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 0.65f, 0.62f, 1f);
+                        break;
+                    case 2:
+                        GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 1f, 0.71f, 1f);
+                        break;
+                }
                 if (i == readyFruits.Length - 1)
                 {
                     GameManager.Instance.bar.StartCoroutine("BarReadying");
@@ -163,7 +171,7 @@ public class Player : MonoBehaviour
     {
         isDash = true;
         anim.SetBool("Dash", true);
-        rigid.linearVelocity = new Vector2(leftRight * speed * 2.5f, rigid.linearVelocityY);
+        rigid.linearVelocity = new Vector2(leftRight * speed * 2f, rigid.linearVelocityY);
         yield return new WaitForSeconds(0.2f);
         isDash = false;
         anim.SetBool("Dash", false);
