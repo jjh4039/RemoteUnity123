@@ -42,4 +42,24 @@ public class PlayerMove : MonoBehaviour
         if (Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - 1f), groundLayer)) { isGround = true; anim.SetBool("Jump", false); } // isGround °ü¸®
         else { isGround = false; anim.SetBool("Jump", true); }
     }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.CompareTag("Enemy"))
+        {
+            if (rigid.linearVelocity.y <0 &&transform.position.y > col.transform.position.y + 0.5f)
+            {
+                rigid.linearVelocityY = jumpPower;
+                Attack(col);
+            }
+            else
+            {
+                SpawnManager.instance.Kill();
+            }
+
+        }
+    }
+    void Attack(Collision2D col)
+    {
+        col.gameObject.GetComponent<EnemyMove>().attacked();
+    }
 }
