@@ -36,6 +36,10 @@ public class EnemyMove : MonoBehaviour
             change = 0;
         }
     }
+    public void attacked()
+    {
+        Destroy(gameObject);
+    }
 
 
 }
