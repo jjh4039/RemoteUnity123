@@ -8,7 +8,7 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rigid;
-    [HideInInspector] public CapsuleCollider2D colider;
+    [HideInInspector] public BoxCollider2D colider;
     [HideInInspector] public SpriteRenderer spriteRen;
     [HideInInspector] public Animator anim;
     [HideInInspector] public float leftRight;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         readyFruits = new int[3]; // 과일 슬롯 개수 (현재 3)
         for (int k = 0; k < readyFruits.Length; k++) { readyFruits[k] = 0; }
         rigid = GetComponent<Rigidbody2D>();
-        colider = GetComponent<CapsuleCollider2D>();
+        colider = GetComponent<BoxCollider2D>();
         spriteRen = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
@@ -71,7 +71,8 @@ public class Player : MonoBehaviour
             ReadyFruit(2);
         }
 
-        if (Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - 1f), groundLayer)) { isGround = true; anim.SetBool("Jump", false); } // isGround 관리
+        if (Physics2D.Linecast(new Vector2(transform.position.x - 0.4f, transform.position.y), new Vector2(transform.position.x + 0.4f, transform.position.y - 1f), groundLayer) ||
+            Physics2D.Linecast(new Vector2(transform.position.x + 0.4f, transform.position.y), new Vector2(transform.position.x - 0.4f, transform.position.y - 1f), groundLayer)) { isGround = true; anim.SetBool("Jump", false); } // isGround 관리
         else { isGround = false; anim.SetBool("Jump", true); }
     }
 
