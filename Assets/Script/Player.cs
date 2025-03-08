@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
         if (leftRight != 0) anim.SetBool("Move", true);
         else anim.SetBool("Move", false);
 
-        if ((Input.GetKeyDown(KeyCode.Space)) & isUseFruit == true && isFruitStop == false) // 과일 사용
-        {
+        if ((Input.GetKeyDown(KeyCode.Space)) && isUseFruit == true && isFruitStop == false) // 과일 사용
+        {   
             UseFruit();
         }
 
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
 
     IEnumerator RecentFruitReset() // 연속 사용 금지 코루틴
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.2f);
         recentUseFruit = 0;
         Debug.Log("최근 과일 사용 기록 초기화");
     }
