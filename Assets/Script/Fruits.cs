@@ -23,9 +23,7 @@ public class Fruits : MonoBehaviour
             case fruitsId.Apple:
                 GameManager.Instance.fruitManager.isEatApple = true;
                 GameManager.Instance.introduceTextManager.StartCoroutine("ThirdStep");
-                GameManager.Instance.player.isMove = false;
-                GameManager.Instance.player.rigid.linearVelocityX = 0;
-                GameManager.Instance.player.leftRight = 0;
+                GameManager.Instance.player.MoveStop();
                 break;
             case fruitsId.Banana:
                 GameManager.Instance.fruitManager.isEatBanana = true;

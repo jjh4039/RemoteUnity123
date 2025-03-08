@@ -45,6 +45,7 @@ public class Bar : MonoBehaviour
 
     public IEnumerator BarReadying()
     {
+        yield return new WaitForSeconds(0.03f);
         BarsColor[0].gameObject.SetActive(false);
         BarsColor[1].gameObject.SetActive(false);
         BarsColor[2].gameObject.SetActive(false);
@@ -63,9 +64,22 @@ public class Bar : MonoBehaviour
         MainBar.sprite = TrunBars[6];
         yield return new WaitForSeconds(0.04f);
         MainBar.sprite = TrunBars[0];
+        UseColorChange();
         GameManager.Instance.player.isUseFruit = true;
+        GameManager.Instance.player.isReadyFruit = false;
         BarsColor[0].gameObject.SetActive(true);
         BarsColor[1].gameObject.SetActive(true);
         BarsColor[2].gameObject.SetActive(true);
+    }
+
+    public void UseColorChange()
+    {
+        for (int i = 0; i < BarsColor.Length; i++)
+        {
+            if(BarsColor[i].color == new Color(1f, 0.65f, 0.62f, 1f))
+            {
+                BarsColor[i].color = new Color(1f, 0.3f, 0.24f, 1f);
+            }
+        }
     }
 }

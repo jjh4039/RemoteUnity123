@@ -14,9 +14,12 @@ public class IntroducePosition : MonoBehaviour
                 break;
             case 2:
                 GameManager.Instance.introduceTextManager.StartCoroutine("SecondStep");
-                GameManager.Instance.player.isMove = false;
-                GameManager.Instance.player.rigid.linearVelocityX = 0;
-                GameManager.Instance.player.leftRight = 0;
+                GameManager.Instance.player.MoveStop();
+                gameObject.SetActive(false);
+                break;
+            case 3:
+                GameManager.Instance.introduceTextManager.StartCoroutine("FourthStep");
+                GameManager.Instance.player.MoveStop();
                 gameObject.SetActive(false);
                 break;
         }

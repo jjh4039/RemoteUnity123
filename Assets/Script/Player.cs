@@ -23,9 +23,14 @@ public class Player : MonoBehaviour
     public bool isDash;
     public bool isMove;
     public bool isUseFruit;
+    public bool isReadyFruit;
+    public bool isFruitStop;
 
     void Start()
     {
+        isFruitStop = false;
+        isUseFruit = false;
+        isReadyFruit = true;
         isDash = false;
         readyFruits = new int[3]; // 과일 슬롯 개수 (현재 3)
         for (int k = 0; k < readyFruits.Length; k++) { readyFruits[k] = 0; }
@@ -51,17 +56,17 @@ public class Player : MonoBehaviour
         if (leftRight != 0) anim.SetBool("Move", true);
         else anim.SetBool("Move", false);
 
-        if ((Input.GetKeyDown(KeyCode.Space)) & isUseFruit) // 과일 사용
+        if ((Input.GetKeyDown(KeyCode.Space)) & isUseFruit == true && isFruitStop == false) // 과일 사용
         {
             UseFruit();
         }
 
-        if ((Input.GetKeyDown(KeyCode.J)) && GameManager.Instance.fruitManager.isEatApple == true) // 사과(1) 준비
+        if ((Input.GetKeyDown(KeyCode.Q)) && GameManager.Instance.fruitManager.isEatApple == true && isReadyFruit == true && isFruitStop == false) // 사과(1) 준비
         {
             ReadyFruit(1);
         }
 
-        if ((Input.GetKeyDown(KeyCode.K)) && GameManager.Instance.fruitManager.isEatBanana == true) // 바나나(2) 준비
+        if ((Input.GetKeyDown(KeyCode.W)) && GameManager.Instance.fruitManager.isEatBanana == true && isReadyFruit == true && isFruitStop == false) // 바나나(2) 준비
         {
             ReadyFruit(2);
         }
@@ -93,7 +98,10 @@ public class Player : MonoBehaviour
             {
                 readyFruits[i] = fruitId;
                 GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 0.65f, 0.62f, 1f);
-                if (i == readyFruits.Length - 1) GameManager.Instance.bar.StartCoroutine("BarReadying");
+                if (i == readyFruits.Length - 1)
+                {
+                    GameManager.Instance.bar.StartCoroutine("BarReadying");
+                }
                 break;
             }
         }
@@ -131,6 +139,11 @@ public class Player : MonoBehaviour
                     GameManager.Instance.fruitManager.FruitUseParticle(recentUseFruit);
                     StopCoroutine("RecentFruitReset"); // 중복 초기화 금지 용도
                     StartCoroutine("RecentFruitReset"); // 연속 사용 금지 코루틴 시작
+                    if (i == readyFruits.Length - 1) // 마지막꺼 사용했으면
+                    {
+                        isUseFruit = false;
+                        isReadyFruit = true;
+                    }
                     readyFruits[i] = 0;
                     break;
                 }
@@ -153,5 +166,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         isDash = false;
         anim.SetBool("Dash", false);
+    }
+
+    public void MoveStop()
+    {
+        isMove = false;
+        rigid.linearVelocityX = 0;
+        leftRight = 0;
+        isFruitStop = true;
     }
 }
