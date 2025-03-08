@@ -61,14 +61,14 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator SecondStep()
     {
-        introduceText.rectTransform.anchoredPosition = new Vector2(-1271.35f, -720.26f);
+        introduceText.rectTransform.anchoredPosition = new Vector2(-1271.8f, -720.26f);
         StartCoroutine(Say(3));
         yield return new WaitForSeconds(0f);
     }
 
     IEnumerator ThirdStep()
     {
-        introduceText.rectTransform.anchoredPosition = new Vector2(-1265.149f, -720.26f);
+        introduceText.rectTransform.anchoredPosition = new Vector2(-1264.92f, -720.26f);
         bar.SetActive(true); // 최초 바 Ui 활성화
         StartCoroutine(Say(7));
         yield return new WaitForSeconds(0f);
@@ -76,7 +76,7 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator FourthStep()
     {
-        introduceText.rectTransform.anchoredPosition = new Vector2(-1255.12f, -720.26f);
+        introduceText.rectTransform.anchoredPosition = new Vector2(-1255.554f, -720.26f);
         StartCoroutine(Say(13));
         yield return new WaitForSeconds(0f);
     }
@@ -439,7 +439,7 @@ public class IntroduceTextManager : MonoBehaviour
         texts[17] = "정확해요,\n이게 전부에요.";
         texts[18] = "준비와 발현의 반복.";
         texts[19] = "하지만 2가지\n주의사항이 있어요";
-        texts[20] = "1. 항상 모든 칸을\n준비/발현해야만 상태가 전환된다";
+        texts[20] = "1. 항상 모든 칸을\n준비/발현해야 상태가 전환된다";
         texts[21] = "2. 같은 과일 연속 발현에는\n1초의 쿨타임이 존재한다";
         texts[22] = "슬슬 끝나가네요,\n이젠 여러 과일을 다뤄보죠";
         texts[23] = "마음껏 연습하고\n오른쪽으로 이동하기";
