@@ -360,18 +360,23 @@ public class IntroduceTextManager : MonoBehaviour
                             yield return new WaitForSeconds(0.06f);
                             introduceText.text = "2. <color=#ff1212>같은 과일</color>";
                             break;
-                        case 21:
+                        case 9:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "2. <color=#ff1212>같은 과일</color> 연속 발현에는\n1초의 <color=#ff1212>쿨</color>";
+                            introduceText.text = "2. <color=#ff1212>같은 과일 연</color>";
                             break;
-                        case 22:
+                        case 10:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "2. <color=#ff1212>같은 과일</color> 연속 발현에는\n1초의 <color=#ff1212>쿨타</color>";
+                            introduceText.text = "2. <color=#ff1212>같은 과일 연속</color>";
                             break;
-                        case 23:
+                        case 11:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "2. <color=#ff1212>같은 과일</color> 연속 발현에는\n1초의 <color=#ff1212>쿨타임</color>";
+                            introduceText.text = "2. <color=#ff1212>같은 과일 연속발</color>";
                             break;
+                        case 12:
+                            yield return new WaitForSeconds(0.06f);
+                            introduceText.text = "2. <color=#ff1212>같은 과일 연속발현</color>";
+                            break;
+
                         default:
                             yield return new WaitForSeconds(0.06f);
                             introduceText.text += texts[TextIndex][i];
@@ -386,15 +391,15 @@ public class IntroduceTextManager : MonoBehaviour
                     {
                         case 15:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFFF01>『</color>";
+                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FAED7D>『</color>";
                             break;
                         case 16:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFFF01>『W</color>";
+                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FAED7D>『W</color>";
                             break;
                         case 17:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFFF01>『W』</color>";
+                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FAED7D>『W』</color>";
                             break;
                         default:
                             yield return new WaitForSeconds(0.06f);
@@ -471,7 +476,7 @@ public class IntroduceTextManager : MonoBehaviour
         texts[18] = "준비와 발현의 반복.";
         texts[19] = "하지만 2가지\n주의사항이 있어요";
         texts[20] = "1. 항상 모든 칸을\n준비/발현해야 상태가 전환된다";
-        texts[21] = "2. 같은 과일 연속 발현에는\n1초의 쿨타임이 존재한다";
+        texts[21] = "2. 같은 과일 연속발현에는\n1초의 쿨타임이 존재한다";
         texts[22] = "슬슬 끝나가네요,\n이젠 여러 과일을 다뤄보죠";
         texts[23] = "마음껏 연습하고\n오른쪽으로 이동하기";
         texts[24] = "설명을 줄일게요,\n바나나는 『W』키로 준비하고";
