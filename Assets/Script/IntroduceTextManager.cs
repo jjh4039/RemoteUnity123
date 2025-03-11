@@ -5,14 +5,14 @@ using Unity.VisualScripting;
 
 public class IntroduceTextManager : MonoBehaviour
 {
-    public Text introduceText;
-    public CanvasGroup canvasGroup;
-    public string[] texts;
-    public bool isQuestClear;
-    public GameObject bar;
-    public bool isSkip;
-    public int skipNum;
-    public int TmpCheck1;
+    [HideInInspector] public Text introduceText;
+    [HideInInspector] public CanvasGroup canvasGroup;
+    public string[] texts; // 인스펙터에서 텍스트 수 관리
+    [HideInInspector] public bool isQuestClear;
+    [HideInInspector] public GameObject bar;
+    [HideInInspector] public bool isSkip;
+    [HideInInspector] public int skipNum;
+    [HideInInspector] public int TmpCheck1;
 
     private void Awake()
     {

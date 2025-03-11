@@ -170,9 +170,12 @@ public class Player : MonoBehaviour
     IEnumerator Dash()
     {
         isDash = true;
+        rigid.gravityScale = 0f; // 대쉬 중 중력 제거
+        rigid.linearVelocityY = 0f; // 대쉬 시작시 수직 위치 고정
         anim.SetBool("Dash", true);
         rigid.linearVelocity = new Vector2(leftRight * speed * 2f, rigid.linearVelocityY);
         yield return new WaitForSeconds(0.2f);
+        rigid.gravityScale = 1.8f;
         isDash = false;
         anim.SetBool("Dash", false);
     }
