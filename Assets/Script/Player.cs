@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
     {
         if (isMove == true) leftRight = Input.GetAxisRaw("Horizontal");
 
-
         if (isDash == false) // 대쉬 중 기본 이동 로직 및 스프라이트 방향 전환 X  
         { 
             rigid.linearVelocity = new Vector2(leftRight * speed, rigid.linearVelocityY); // 기본 좌우이동
@@ -162,7 +161,7 @@ public class Player : MonoBehaviour
 
     IEnumerator RecentFruitReset() // 연속 사용 금지 코루틴
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.0f);
         recentUseFruit = 0;
         Debug.Log("최근 과일 사용 기록 초기화");
     }
@@ -173,6 +172,11 @@ public class Player : MonoBehaviour
         rigid.gravityScale = 0f; // 대쉬 중 중력 제거
         rigid.linearVelocityY = 0f; // 대쉬 시작시 수직 위치 고정
         anim.SetBool("Dash", true);
+        if (leftRight == 0) // 방향키 안잡고 대쉬 -> 바라보는 방향
+        {
+            if (spriteRen.flipX == true) leftRight = -1;
+            else leftRight = 1;
+        }
         rigid.linearVelocity = new Vector2(leftRight * speed * 2f, rigid.linearVelocityY);
         yield return new WaitForSeconds(0.2f);
         rigid.gravityScale = 1.8f;

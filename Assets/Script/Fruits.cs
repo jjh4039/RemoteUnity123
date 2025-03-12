@@ -31,7 +31,7 @@ public class Fruits : MonoBehaviour
                 GameManager.Instance.player.MoveStop();
                 break;
         }
-        Invoke("EatDel", 0.55f);
+        Invoke("EatDel", 0.50f);
         anim.SetBool("Eat", true);
     }
 
