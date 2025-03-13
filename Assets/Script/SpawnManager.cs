@@ -43,4 +43,17 @@ public class SpawnManager : MonoBehaviour
             isDead = true;
         }
     }
+    public void Kill(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            if (!isDead)
+            {
+                Destroy(collision.gameObject);
+                GameManager.Instance.player = null;
+                isDead = true;
+            }
+        }
+        
+    }
 }
