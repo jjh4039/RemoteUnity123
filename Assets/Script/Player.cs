@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
             if (spriteRen.flipX == true) leftRight = -1;
             else leftRight = 1;
         }
-        rigid.linearVelocity = new Vector2(leftRight * speed * 2f, rigid.linearVelocityY);
+        rigid.linearVelocity = new Vector2(leftRight * speed * 1.7f, rigid.linearVelocityY);
         yield return new WaitForSeconds(0.2f);
         rigid.gravityScale = 1.8f;
         isDash = false;

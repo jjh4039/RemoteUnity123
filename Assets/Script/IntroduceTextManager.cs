@@ -8,6 +8,8 @@ public class IntroduceTextManager : MonoBehaviour
     [HideInInspector] public Text introduceText;
     [HideInInspector] public CanvasGroup canvasGroup;
     public string[] texts; // 인스펙터에서 텍스트 수 관리
+    public Animator boxAnim;
+    public GameObject skipGuide;
     [HideInInspector] public bool isQuestClear;
     [HideInInspector] public GameObject bar;
     [HideInInspector] public bool isSkip;
@@ -34,7 +36,7 @@ public class IntroduceTextManager : MonoBehaviour
             introduceText.color = introduceText.color = Color.black;
         } 
 
-        if (Input.GetKeyDown(KeyCode.Space) && isSkip == true || (Input.GetKeyDown(KeyCode.Return)) && isSkip == true)
+        if (Input.GetKeyDown(KeyCode.Space) && isSkip == true)
         {
             StartCoroutine(Say(skipNum));
         }
@@ -92,9 +94,19 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator Say(int TextIndex) // 대화용
     {
+        skipGuide.SetActive(false);
         StartCoroutine(AlphaOn());
         introduceText.text = "";
         isSkip = false;
+        switch (TextIndex) // 텍스트 박스 관리
+        {
+            case 0 or 3 or 7 or 13 or 15 or 17 or 24:
+                StartCoroutine(BoxOn());
+                break;
+            case 2 or 6 or 12 or 14 or 16 or 23 or 29:
+                StartCoroutine(BoxOff());
+                break;
+        }
 
         switch (TextIndex) // 퀘스트 관리
         {
@@ -224,13 +236,13 @@ public class IntroduceTextManager : MonoBehaviour
                             yield return new WaitForSeconds(0.06f);
                             introduceText.text = "<color=#FF1212>Space Bar</color>";
                             break;
+                        case 18:
+                            yield return new WaitForSeconds(0.06f);
+                            introduceText.text = "<color=#FF1212>Space Bar</color>를 눌러\n능력을 <color=#FF1212>발</color>";
+                            break;
                         case 19:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "<color=#FF1212>Space Bar</color>키를 눌러\n능력을 <color=#FF1212>발</color>";
-                            break;
-                        case 20:
-                            yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "<color=#FF1212>Space Bar</color>키를 눌러\n능력을 <color=#FF1212>발현</color>";
+                            introduceText.text = "<color=#FF1212>Space Bar</color>를 눌러\n능력을 <color=#FF1212>발현</color>";
                             break;
                         default:
                             yield return new WaitForSeconds(0.06f);
@@ -437,6 +449,7 @@ public class IntroduceTextManager : MonoBehaviour
                 break;
             default:
                 skipNum = TextIndex + 1;
+                skipGuide.SetActive(true);
                 isSkip = true;
                 break;
         }
@@ -448,6 +461,24 @@ public class IntroduceTextManager : MonoBehaviour
         for (float i = 0; i < 1; i += 0.1f)
         {
             canvasGroup.alpha = i;
+            yield return new WaitForSeconds(0.025f);
+        }
+    }
+
+    IEnumerator BoxOn()
+    {
+        boxAnim.SetBool("Live", true);
+        for (float i = 0; i < 1; i += 0.1f)
+        {
+            yield return new WaitForSeconds(0.025f);
+        }
+    }
+
+    IEnumerator BoxOff()
+    {
+        boxAnim.SetBool("Live", false);
+        for (float i = 0; i < 1; i -= 0.1f)
+        {
             yield return new WaitForSeconds(0.025f);
         }
     }
@@ -466,26 +497,27 @@ public class IntroduceTextManager : MonoBehaviour
         texts[8] = "보통 기본적으로\n쓸 수 있는 점프조차";
         texts[9] = "여기에서는\n다른 방법으로 사용해요";
         texts[10] = "특정한 키를 눌러\n과일 능력을 준비하고";
-        texts[11] = "Space Bar키를 눌러\n능력을 발현시킬 수 있어요";
+        texts[11] = "Space Bar를 눌러\n능력을 발현할 수 있어요";
         texts[12] = "이해하지 못했어도 좋아요,\n저 앞에서 한번 해보죠";
-        texts[13] = "바로 갈게요, 사과는\n『Q』키로 준비할 수 있어요";
-        texts[14] = "『Q』키를 3번 눌러\n발현 준비 단계로 돌입하기";
+        texts[13] = "바로 갈게요, 사과는\n『Q』로 준비할 수 있어요";
+        texts[14] = "『Q』를 3번 눌러\n발현 단계로 돌입하기";
         texts[15] = "잘했어요,\n이번에는 발현이에요";
         texts[16] = "『Space Bar』를 눌러\n능력 발현하기";
         texts[17] = "정확해요,\n이게 전부에요";
         texts[18] = "준비와 발현의 반복.";
         texts[19] = "하지만 2가지\n주의사항이 있어요";
-        texts[20] = "1. 항상 모든 칸을\n준비/발현해야 상태가 전환된다";
-        texts[21] = "2. 같은 과일 연속발현에는\n1초의 쿨타임이 존재한다";
+        texts[20] = "1. 항상 모든 칸을\n준비/발현해야만 전환된다";
+        texts[21] = "2. 같은 과일 연속발현에는\n약간의 쿨타임이 존재한다";
         texts[22] = "슬슬 끝나가네요,\n이젠 여러 과일을 다뤄보죠";
         texts[23] = "마음껏 연습하고\n오른쪽으로 이동하기";
-        texts[24] = "설명을 줄일게요,\n바나나는 『W』키로 준비하고";
+        texts[24] = "설명을 줄일게요,\n바나나는 『W』로 준비하고";
         texts[25] = "발현 시 앞으로\n빠르게 돌진해요";
         texts[26] = "사과와 섞어서\n준비 및 발현시키면..";
         texts[27] = "더욱 빠르게 또는\n더욱 높이 뛸 수 있겠죠?";
         texts[28] = "준비해둔 코스 끝에서\n기다리고 있을게요.";
         texts[29] = "코스 극복하기";
     }
+
 }
 
 
