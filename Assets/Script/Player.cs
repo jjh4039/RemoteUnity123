@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public bool isUseFruit;
     public bool isReadyFruit;
     public bool isFruitStop;
+    public bool isLive;
 
     void Start()
     {
