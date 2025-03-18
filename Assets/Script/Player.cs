@@ -4,6 +4,7 @@ using UnityEngine;
 using static Fruits;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using System.Collections;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -25,14 +26,17 @@ public class Player : MonoBehaviour
     public bool isUseFruit;
     public bool isReadyFruit;
     public bool isFruitStop;
-    public bool isLive;
+    public bool isLive; // 플레이어 생존여부
+    public int dieCount; // 플레이어 사망 횟수
 
     void Start()
     {
+        dieCount = 0;
         isFruitStop = false;
         isUseFruit = false;
         isReadyFruit = true;
         isDash = false;
+        isLive = true;
         readyFruits = new int[3]; // 과일 슬롯 개수 (현재 3)
         for (int k = 0; k < readyFruits.Length; k++) { readyFruits[k] = 0; }
         rigid = GetComponent<Rigidbody2D>();

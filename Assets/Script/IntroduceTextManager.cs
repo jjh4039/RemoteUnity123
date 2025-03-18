@@ -90,6 +90,13 @@ public class IntroduceTextManager : MonoBehaviour
         yield return new WaitForSeconds(0f);
     }
 
+    IEnumerator FirstDie()
+    {
+        // 체크포인트 위치
+        StartCoroutine(Say(30));
+        yield return new WaitForSeconds(0f);
+    }
+
 
 
     IEnumerator Say(int TextIndex) // 대화용
@@ -516,6 +523,10 @@ public class IntroduceTextManager : MonoBehaviour
         texts[27] = "더욱 빠르게 또는\n더욱 높이 뛸 수 있겠죠?";
         texts[28] = "준비해둔 코스 끝에서\n기다리고 있을게요.";
         texts[29] = "코스 극복하기";
+        texts[30] = "아직은 좀\n어려운가요?";
+        texts[31] = "좀만 생각해보면\n'간단히' 해결할 수 있는데..";
+        texts[32] = "섞어서 준비하면\n빠르게 발현할 수 있"
+
     }
 
 }
