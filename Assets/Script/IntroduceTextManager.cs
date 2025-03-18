@@ -525,7 +525,7 @@ public class IntroduceTextManager : MonoBehaviour
         texts[29] = "코스 극복하기";
         texts[30] = "아직은 좀\n어려운가요?";
         texts[31] = "좀만 생각해보면\n'간단히' 해결할 수 있는데..";
-        texts[32] = "섞어서 준비하면\n빠르게 발현할 수 있"
+        texts[32] = "섞어서 준비하면\n빠르게 발현할 수 있어요";
 
     }
 
