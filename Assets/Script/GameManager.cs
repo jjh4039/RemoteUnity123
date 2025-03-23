@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
     public IntroduceTextManager introduceTextManager;
     public Bar bar;
 
+    public int deathCount;
+
     void Awake()
     {
+        deathCount = 0;
         Instance = this;
     }
 }

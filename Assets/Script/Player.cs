@@ -27,11 +27,9 @@ public class Player : MonoBehaviour
     public bool isReadyFruit;
     public bool isFruitStop;
     public bool isLive; // 플레이어 생존여부
-    public int dieCount; // 플레이어 사망 횟수
 
     void Start()
     {
-        dieCount = 0;
         isFruitStop = false;
         isUseFruit = false;
         isReadyFruit = true;
@@ -78,6 +76,11 @@ public class Player : MonoBehaviour
         if (Physics2D.Linecast(new Vector2(transform.position.x - 0.4f, transform.position.y), new Vector2(transform.position.x + 0.4f, transform.position.y - 1f), groundLayer) ||
             Physics2D.Linecast(new Vector2(transform.position.x + 0.4f, transform.position.y), new Vector2(transform.position.x - 0.4f, transform.position.y - 1f), groundLayer)) { isGround = true; anim.SetBool("Jump", false); } // isGround 관리
         else { isGround = false; anim.SetBool("Jump", true); }
+
+        if (Input.GetKeyDown(KeyCode.R) && GameManager.Instance.player.isLive == false)
+        {
+            
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -195,5 +198,18 @@ public class Player : MonoBehaviour
         rigid.linearVelocityX = 0;
         leftRight = 0;
         isFruitStop = true;
+    }
+
+    public void Die()
+    {
+        isLive = false;
+        GameManager.Instance.deathCount++;
+        gameObject.SetActive(false);
+    }
+
+    public void Rebirth()
+    {
+        isLive = true;
+        gameObject.SetActive(true);
     }
 }
