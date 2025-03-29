@@ -43,6 +43,11 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    void OnEnable()
+    {
+        isLive = true;
+    }
+
     void Update()
     {
         if (isMove == true) leftRight = Input.GetAxisRaw("Horizontal");
@@ -203,13 +208,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         isLive = false;
-        GameManager.Instance.deathCount++;
+        SpawnManager.instance.deathCount++;
         gameObject.SetActive(false);
-    }
-
-    public void Rebirth()
-    {
-        isLive = true;
-        gameObject.SetActive(true);
     }
 }

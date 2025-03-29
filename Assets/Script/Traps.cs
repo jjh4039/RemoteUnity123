@@ -9,7 +9,6 @@ public class Traps : MonoBehaviour
     void Start()
     {
         col = GetComponent<TilemapCollider2D>();
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +16,6 @@ public class Traps : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             SpawnManager.instance.Kill();
-                
         }
     }
 }

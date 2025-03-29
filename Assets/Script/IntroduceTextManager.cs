@@ -92,11 +92,10 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator FirstDie()
     {
-        // 체크포인트 위치
+        introduceText.rectTransform.anchoredPosition = new Vector2(-1235.173f, -718.35f);
         StartCoroutine(Say(30));
         yield return new WaitForSeconds(0f);
     }
-
 
 
     IEnumerator Say(int TextIndex) // 대화용
@@ -107,9 +106,11 @@ public class IntroduceTextManager : MonoBehaviour
         isSkip = false;
         switch (TextIndex) // 텍스트 박스 관리
         {
-            case 0 or 3 or 7 or 13 or 15 or 17 or 24:
+            // 시작부분
+            case 0 or 3 or 7 or 13 or 15 or 17 or 24 or 30:
                 StartCoroutine(BoxOn());
                 break;
+            // 끝부분
             case 2 or 6 or 12 or 14 or 16 or 23 or 29:
                 StartCoroutine(BoxOff());
                 break;
@@ -120,7 +121,7 @@ public class IntroduceTextManager : MonoBehaviour
             case 2 or 6 or 12 or 14 or 16 or 23 or 29: // 퀘스트를 주는 번호
                 isQuestClear = false;
                 break;
-            case 15 or 17 or 24: // 퀘스트 클리어 따로 없이 그냥 다음으로 넘어가는 번호
+            case 15 or 17 or 24 or 30: // 퀘스트 클리어 따로 없이 그냥 다음으로 넘어가는 번호
                 isQuestClear = true;
                 GameManager.Instance.player.isFruitStop = true;
                 break;
@@ -475,7 +476,7 @@ public class IntroduceTextManager : MonoBehaviour
     IEnumerator BoxOn()
     {
         boxAnim.SetBool("Live", true);
-        for (float i = 0; i < 1; i += 0.1f)
+        for (float i = 0; i < 1; i += 0.1f) // ??
         {
             yield return new WaitForSeconds(0.025f);
         }
@@ -524,7 +525,7 @@ public class IntroduceTextManager : MonoBehaviour
         texts[28] = "준비해둔 코스 끝에서\n기다리고 있을게요.";
         texts[29] = "코스 극복하기";
         texts[30] = "아직은 좀\n어려운가요?";
-        texts[31] = "좀만 생각해보면\n'간단히' 해결할 수 있는데..";
+        texts[31] = "조금만 생각해보면\n간단히 해결할 수 있는데..";
         texts[32] = "섞어서 준비하면\n빠르게 발현할 수 있어요";
 
     }

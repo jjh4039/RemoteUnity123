@@ -19,12 +19,14 @@ public class EnemyMove : MonoBehaviour
     {
         Move();
     }
+
     void Move()
     {
         float tmp = speed * direction * Time.deltaTime;
         change += tmp;
         currentPos += tmp;
         transform.position = new Vector2(currentPos, transform.position.y);
+
         if (change >= R_Max)
         {
             direction = -1.0f;
@@ -36,10 +38,10 @@ public class EnemyMove : MonoBehaviour
             change = 0;
         }
     }
+
     public void attacked()
     {
         Destroy(gameObject);
     }
-
 
 }

@@ -10,7 +10,6 @@ public class IntroducePosition : MonoBehaviour
         {
             case 0:
                 GameManager.Instance.player.Die();
-                gameObject.SetActive(false);
                 break;
             case 1:
                 GameManager.Instance.introduceTextManager.isQuestClear = true;
