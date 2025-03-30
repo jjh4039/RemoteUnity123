@@ -3920,6 +3920,7 @@ MonoBehaviour:
   player: {fileID: 2088616795}
   introduceTextManager: {fileID: 0}
   bar: {fileID: 0}
+  deathCount: 0
 --- !u!4 &1686829402
 Transform:
   m_ObjectHideFlags: 0
