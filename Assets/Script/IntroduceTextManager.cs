@@ -95,6 +95,15 @@ public class IntroduceTextManager : MonoBehaviour
         introduceText.rectTransform.anchoredPosition = new Vector2(-1235.173f, -718.35f);
         StartCoroutine(Say(30));
         yield return new WaitForSeconds(0f);
+        GameManager.Instance.player.MoveStop();
+    }
+
+    IEnumerator OneMore()
+    {
+        introduceText.rectTransform.anchoredPosition = new Vector2(-1226.416f, -718.35f);
+        StartCoroutine(Say(35));
+        SpawnManager.instance.deathCount = 3;
+        yield return new WaitForSeconds(0f);
     }
 
 
@@ -107,21 +116,21 @@ public class IntroduceTextManager : MonoBehaviour
         switch (TextIndex) // 텍스트 박스 관리
         {
             // 시작부분
-            case 0 or 3 or 7 or 13 or 15 or 17 or 24 or 30:
+            case 0 or 3 or 7 or 13 or 15 or 17 or 24 or 30 or 35:
                 StartCoroutine(BoxOn());
                 break;
             // 끝부분
-            case 2 or 6 or 12 or 14 or 16 or 23 or 29:
+            case 2 or 6 or 12 or 14 or 16 or 23 or 29 or 34 or 36:
                 StartCoroutine(BoxOff());
                 break;
         }
 
         switch (TextIndex) // 퀘스트 관리
         {
-            case 2 or 6 or 12 or 14 or 16 or 23 or 29: // 퀘스트를 주는 번호
+            case 2 or 6 or 12 or 14 or 16 or 23 or 29 or 34 or 36: // 퀘스트를 주는 번호
                 isQuestClear = false;
                 break;
-            case 15 or 17 or 24 or 30: // 퀘스트 클리어 따로 없이 그냥 다음으로 넘어가는 번호
+            case 15 or 17 or 24 or 30 or 35: // 퀘스트 클리어 따로 없이 그냥 다음으로 넘어가는 번호
                 isQuestClear = true;
                 GameManager.Instance.player.isFruitStop = true;
                 break;
@@ -411,21 +420,46 @@ public class IntroduceTextManager : MonoBehaviour
                     {
                         case 15:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FAED7D>『</color>";
+                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFD700>『</color>";
                             break;
                         case 16:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FAED7D>『W</color>";
+                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFD700>『W</color>";
                             break;
                         case 17:
                             yield return new WaitForSeconds(0.06f);
-                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FAED7D>『W』</color>";
+                            introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFD700>『W』</color>";
                             break;
                         default:
                             yield return new WaitForSeconds(0.06f);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
+                }
+                break;
+            case 32:
+                for (int i = 0; i < texts[TextIndex].Length; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            yield return new WaitForSeconds(0.06f);
+                            introduceText.text = "<color=#FF1212>섞</color>";
+                            break;
+                        case 2:
+                            yield return new WaitForSeconds(0.06f);
+                            introduceText.text = "<color=#FF1212>섞</color> <color=#FFD700>어</color>";
+                            break;
+                        case 4:
+                            yield return new WaitForSeconds(0.06f);
+                            introduceText.text = "<color=#FF1212>섞</color> <color=#FFD700>어</color> <color=#FF1212>서</color>";
+                            break;
+                        default:
+                            yield return new WaitForSeconds(0.06f);
+                            introduceText.text += texts[TextIndex][i];
+                            break;
+                    }
+                    
                 }
                 break;
             default:
@@ -442,7 +476,7 @@ public class IntroduceTextManager : MonoBehaviour
             case 2 or 6 or 12: // 초반부분 이동시작
                 GameManager.Instance.player.isMove = true;
                 break;
-            case 23 or 29: // 중후반부분 이동시작 and 연습 가능
+            case 23 or 29 or 34 or 36: // 중후반부분 이동시작 and 연습 가능
                 GameManager.Instance.player.isMove = true;
                 GameManager.Instance.player.isFruitStop = false;
                 break;
@@ -520,14 +554,17 @@ public class IntroduceTextManager : MonoBehaviour
         texts[23] = "마음껏 연습하고\n오른쪽으로 이동하기";
         texts[24] = "설명을 줄일게요,\n바나나는 『W』로 준비하고";
         texts[25] = "발현 시 앞으로\n빠르게 돌진해요";
-        texts[26] = "사과와 섞어서\n준비 및 발현시키면..";
+        texts[26] = "사과와 섞어서\n준비 및 발현시키면...";
         texts[27] = "더욱 빠르게 또는\n더욱 높이 뛸 수 있겠죠?";
         texts[28] = "준비해둔 코스 끝에서\n기다리고 있을게요.";
-        texts[29] = "코스 극복하기";
+        texts[29] = "Q, W를 활용해\n코스 극복하기";
         texts[30] = "아직은 좀\n어려운가요?";
-        texts[31] = "조금만 생각해보면\n간단히 해결할 수 있는데..";
-        texts[32] = "섞어서 준비하면\n빠르게 발현할 수 있어요";
-
+        texts[31] = "이정도 거리면\n마구잡이로 뛰기보단...";
+        texts[32] = "섞 어 서 준비해야\n지나갈 수 있겠네요.";
+        texts[33] = "어느정도 힌트가\n되었을까요?";
+        texts[34] = "다시 한 번\n도전하기";
+        texts[35] = "잘했어요.\n이제 두 번 남았어요";
+        texts[36] = "장거리 도약\n코스 클리어하기";
     }
 
 }

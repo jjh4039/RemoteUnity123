@@ -25,6 +25,11 @@ public class IntroducePosition : MonoBehaviour
                 GameManager.Instance.player.MoveStop();
                 gameObject.SetActive(false);
                 break;
+            case 4:
+                GameManager.Instance.introduceTextManager.StartCoroutine("OneMore");
+                GameManager.Instance.player.MoveStop();
+                gameObject.SetActive(false);
+                break;
         }
     }
 }
