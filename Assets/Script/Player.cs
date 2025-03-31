@@ -51,7 +51,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (isMove == true) leftRight = Input.GetAxisRaw("Horizontal");
-
         if (isDash == false) // 대쉬 중 기본 이동 로직 및 스프라이트 방향 전환 X  
         { 
             rigid.linearVelocity = new Vector2(leftRight * speed, rigid.linearVelocityY); // 기본 좌우이동
@@ -81,11 +80,6 @@ public class Player : MonoBehaviour
         if (Physics2D.Linecast(new Vector2(transform.position.x - 0.4f, transform.position.y), new Vector2(transform.position.x + 0.4f, transform.position.y - 1f), groundLayer) ||
             Physics2D.Linecast(new Vector2(transform.position.x + 0.4f, transform.position.y), new Vector2(transform.position.x - 0.4f, transform.position.y - 1f), groundLayer)) { isGround = true; anim.SetBool("Jump", false); } // isGround 관리
         else { isGround = false; anim.SetBool("Jump", true); }
-
-        if (Input.GetKeyDown(KeyCode.R) && GameManager.Instance.player.isLive == false)
-        {
-            
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -184,6 +178,7 @@ public class Player : MonoBehaviour
         isDash = true;
         rigid.gravityScale = 0f; // 대쉬 중 중력 제거
         rigid.linearVelocityY = 0f; // 대쉬 시작시 수직 위치 고정
+
         anim.SetBool("Dash", true);
         if (leftRight == 0) // 방향키 안잡고 대쉬 -> 바라보는 방향
         {

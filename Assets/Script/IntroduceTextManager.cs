@@ -405,7 +405,6 @@ public class IntroduceTextManager : MonoBehaviour
                             yield return new WaitForSeconds(0.06f);
                             introduceText.text = "2. <color=#ff1212>같은 과일 연속발현</color>";
                             break;
-
                         default:
                             yield return new WaitForSeconds(0.06f);
                             introduceText.text += texts[TextIndex][i];
