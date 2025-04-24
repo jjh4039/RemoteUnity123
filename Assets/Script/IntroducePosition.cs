@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class IntroducePosition : MonoBehaviour
 {
@@ -28,6 +29,13 @@ public class IntroducePosition : MonoBehaviour
             case 4:
                 GameManager.Instance.introduceTextManager.StartCoroutine("OneMore");
                 GameManager.Instance.player.MoveStop();
+                gameObject.SetActive(false);
+                break;
+            case 5:
+                GameManager.Instance.introduceTextManager.StartCoroutine("HighJump");
+                GameManager.Instance.player.MoveStop();
+                GameManager.Instance.mainCamera.cameraLevel = 1;
+                GameManager.Instance.mainCamera.StartCoroutine("SizeFiveZoom");
                 gameObject.SetActive(false);
                 break;
         }

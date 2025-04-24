@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public IntroduceTextManager introduceTextManager;
     public Bar bar;
+    public MainCamera mainCamera;
 
     void Awake()
     {

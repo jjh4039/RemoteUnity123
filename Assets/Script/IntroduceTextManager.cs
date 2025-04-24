@@ -100,9 +100,16 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator OneMore()
     {
-        introduceText.rectTransform.anchoredPosition = new Vector2(-1226.416f, -718.35f);
+        introduceText.rectTransform.anchoredPosition = new Vector2(-1225.45f, -718.35f);
         StartCoroutine(Say(35));
         SpawnManager.instance.deathCount = 3;
+        yield return new WaitForSeconds(0f);
+    }
+
+    IEnumerator HighJump()
+    {
+        introduceText.rectTransform.anchoredPosition = new Vector2(-1204.3f, -718.35f);
+        StartCoroutine(Say(37));
         yield return new WaitForSeconds(0f);
     }
 
@@ -116,21 +123,21 @@ public class IntroduceTextManager : MonoBehaviour
         switch (TextIndex) // 텍스트 박스 관리
         {
             // 시작부분
-            case 0 or 3 or 7 or 13 or 15 or 17 or 24 or 30 or 35:
+            case 0 or 3 or 7 or 13 or 15 or 17 or 24 or 30 or 35 or 37:
                 StartCoroutine(BoxOn());
                 break;
             // 끝부분
-            case 2 or 6 or 12 or 14 or 16 or 23 or 29 or 34 or 36:
+            case 2 or 6 or 12 or 14 or 16 or 23 or 29 or 34 or 36 or 40:
                 StartCoroutine(BoxOff());
                 break;
         }
 
         switch (TextIndex) // 퀘스트 관리
         {
-            case 2 or 6 or 12 or 14 or 16 or 23 or 29 or 34 or 36: // 퀘스트를 주는 번호
+            case 2 or 6 or 12 or 14 or 16 or 23 or 29 or 34 or 36 or 40: // 퀘스트를 주는 번호
                 isQuestClear = false;
                 break;
-            case 15 or 17 or 24 or 30 or 35: // 퀘스트 클리어 따로 없이 그냥 다음으로 넘어가는 번호
+            case 15 or 17 or 24 or 30 or 35 or 37: // 퀘스트 클리어 따로 없이 그냥 다음으로 넘어가는 번호
                 isQuestClear = true;
                 GameManager.Instance.player.isFruitStop = true;
                 break;
@@ -475,7 +482,7 @@ public class IntroduceTextManager : MonoBehaviour
             case 2 or 6 or 12: // 초반부분 이동시작
                 GameManager.Instance.player.isMove = true;
                 break;
-            case 23 or 29 or 34 or 36: // 중후반부분 이동시작 and 연습 가능
+            case 23 or 29 or 34 or 36 or 40: // 중후반부분 이동시작 and 연습 가능
                 GameManager.Instance.player.isMove = true;
                 GameManager.Instance.player.isFruitStop = false;
                 break;
@@ -564,6 +571,10 @@ public class IntroduceTextManager : MonoBehaviour
         texts[34] = "다시 한 번\n도전하기";
         texts[35] = "잘했어요.\n이제 두 번 남았어요";
         texts[36] = "장거리 도약\n코스 클리어하기";
+        texts[37] = "드디어\n마지막이네요";
+        texts[38] = "높이 뛰는 것도\n할 수 있겠죠?";
+        texts[39] = "코스 끝에서 봐요.";
+        texts[40] = "마지막 코스\n클리어하기";
     }
 
 }
