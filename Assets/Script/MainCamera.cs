@@ -14,7 +14,7 @@ public class MainCamera : MonoBehaviour
         transform.position = GameManager.Instance.player.transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         switch (cameraLevel)
         {
