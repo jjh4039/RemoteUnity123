@@ -38,6 +38,11 @@ public class IntroducePosition : MonoBehaviour
                 GameManager.Instance.mainCamera.StartCoroutine("SizeFiveZoom");
                 gameObject.SetActive(false);
                 break;
+            case 6:
+                GameManager.Instance.mainCamera.cameraLevel = 2;
+                GameManager.Instance.mainCamera.StartCoroutine("SizeFourZoom");
+                gameObject.SetActive(false);
+                break;
         }
     }
 }

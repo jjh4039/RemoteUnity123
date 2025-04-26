@@ -24,6 +24,9 @@ public class MainCamera : MonoBehaviour
             case 1:
                 transform.position = Vector3.SmoothDamp(transform.position,new Vector3(GameManager.Instance.player.transform.position.x + 6.2f, 3.3f, -10f), ref velocityPosition, smoothTimePosition);
                 break;
+            case 2:
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(118.45f, 3.3f, -10f), ref velocityPosition, smoothTimePosition);
+                break;
         }
         
         if (transform.position.x < 1.53)
@@ -38,6 +41,15 @@ public class MainCamera : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
             mainCamera.orthographicSize += 0.08f;
+        }
+    }
+
+    public IEnumerator SizeFourZoom()
+    {
+        while (mainCamera.orthographicSize >= 4)
+        {
+            yield return new WaitForSeconds(0.01f);
+            mainCamera.orthographicSize -= 0.08f;
         }
     }
 }
