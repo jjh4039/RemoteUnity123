@@ -40,7 +40,10 @@ public class IntroducePosition : MonoBehaviour
                 break;
             case 6:
                 GameManager.Instance.mainCamera.cameraLevel = 2;
+                GameManager.Instance.cutScene.StartCoroutine("CutSceneStart");
                 GameManager.Instance.mainCamera.StartCoroutine("SizeFourZoom");
+                GameManager.Instance.player.MoveStop();
+                GameManager.Instance.introduceTextManager.StartCoroutine("FinalCut");
                 gameObject.SetActive(false);
                 break;
         }

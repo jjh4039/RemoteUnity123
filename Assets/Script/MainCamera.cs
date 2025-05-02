@@ -25,7 +25,10 @@ public class MainCamera : MonoBehaviour
                 transform.position = Vector3.SmoothDamp(transform.position, new Vector3(GameManager.Instance.player.transform.position.x + 6.2f, 3.3f, -10f), ref velocityPosition, smoothTimePosition);
                 break;
             case 2:
-                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(118.45f, 3.3f, -10f), ref velocityPosition, smoothTimePosition);
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(118.45f, 3.0f, -10f), ref velocityPosition, smoothTimePosition);
+                break;
+            case 3:
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(120.4f, 2f, -10f), ref velocityPosition, 0.15f);
                 break;
         }
         
@@ -40,7 +43,7 @@ public class MainCamera : MonoBehaviour
         while (mainCamera.orthographicSize <= 5)
         {
             yield return new WaitForSeconds(0.01f);
-            mainCamera.orthographicSize += 0.05f;
+            mainCamera.orthographicSize += 0.06f;
         }
     }
 
@@ -51,5 +54,16 @@ public class MainCamera : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             mainCamera.orthographicSize -= 0.06f;
         }
+        mainCamera.orthographicSize = 4;
+    }
+
+    public IEnumerator SizeThreeZoom()
+    {
+        while (mainCamera.orthographicSize >= 3)
+        {
+            yield return new WaitForSeconds(0.01f);
+            mainCamera.orthographicSize -= 0.05f;
+        }
+        mainCamera.orthographicSize = 3;
     }
 }

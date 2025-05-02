@@ -10,7 +10,7 @@ public class IntroduceTextManager : MonoBehaviour
     public string[] texts; // 인스펙터에서 텍스트 수 관리
     public Animator boxAnim;
     public GameObject skipGuide;
-    public float textSpeed = 0.2f; // 텍스트 속도
+    public float textSpeed; // 텍스트 속도
     [HideInInspector] public bool isQuestClear;
     [HideInInspector] public GameObject bar;
     [HideInInspector] public bool isSkip;
@@ -112,6 +112,40 @@ public class IntroduceTextManager : MonoBehaviour
         introduceText.rectTransform.anchoredPosition = new Vector2(-1204.3f, -718.35f);
         StartCoroutine(Say(37));
         yield return new WaitForSeconds(0f);
+    }
+
+    IEnumerator FinalCut()
+    {
+        GameManager.Instance.player.isCut = true;
+        GameManager.Instance.player.spriteRen.flipX = false;
+        bar.SetActive(false);
+        GameManager.Instance.player.rigid.linearVelocity = new Vector2(1f * GameManager.Instance.player.speed, 0f);
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.player.rigid.linearVelocity = new Vector2(0f * GameManager.Instance.player.speed, 0f);
+        yield return new WaitForSeconds(1f);
+
+        GameManager.Instance.player.spriteRen.flipX = true;
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.player.spriteRen.flipX = false;
+
+        // 물음표 이모티콘 생성
+        yield return new WaitForSeconds(0.2f);
+        GameManager.Instance.player.EmotionQuestion();
+
+        yield return new WaitForSeconds(2.5f);
+        GameManager.Instance.mainCamera.StartCoroutine("SizeThreeZoom");
+        GameManager.Instance.mainCamera.cameraLevel = 3;
+
+        yield return new WaitForSeconds(1.4f);
+        GameManager.Instance.player.EmotionThink();
+
+        yield return new WaitForSeconds(3.1f);
+        GameManager.Instance.player.rigid.linearVelocity = new Vector2(1f * GameManager.Instance.player.speed, 0f);
+
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 0.5f;
+        GameManager.Instance.cutScene.StartCoroutine("PadeOut");
+
     }
 
 

@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool isGround;
     [HideInInspector] public Fruits fruits;
     [HideInInspector] public IntroducePosition iPos;
+    public GameObject[] emotionBox;
     public LayerMask groundLayer;
     public float speed;
     public float jumpPower;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     public int recentUseFruit;
     public bool isDash;
     public bool isMove;
+    public bool isCut;
     public bool isUseFruit;
     public bool isReadyFruit;
     public bool isFruitStop;
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
         isReadyFruit = true;
         isDash = false;
         isLive = true;
+        isCut = false;
         readyFruits = new int[3]; // 과일 슬롯 개수 (현재 3)
         for (int k = 0; k < readyFruits.Length; k++) { readyFruits[k] = 0; }
         rigid = GetComponent<Rigidbody2D>();
@@ -51,7 +54,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (isMove == true) leftRight = Input.GetAxisRaw("Horizontal");
-        if (isDash == false) // 대쉬 중 기본 이동 로직 및 스프라이트 방향 전환 X  
+        if (isDash == false && isCut == false) // 대쉬 중 기본 이동 로직 및 스프라이트 방향 전환 X  
         { 
             rigid.linearVelocity = new Vector2(leftRight * speed, rigid.linearVelocityY); // 기본 좌우이동
 
@@ -59,17 +62,30 @@ public class Player : MonoBehaviour
             else if (leftRight > 0) spriteRen.flipX = false; // 이동하는 방향 바라보기
         }
 
-        if (leftRight != 0) anim.SetBool("Move", true);
-        else anim.SetBool("Move", false);
+
+        if (isCut == false) { 
+            if (leftRight != 0) anim.SetBool("Move", true);
+            else anim.SetBool("Move", false);
+        }
+        else
+        {
+            if(rigid.linearVelocityX > 0)
+            {
+                anim.SetBool("Move", true);
+            }
+            else anim.SetBool("Move", false);
+        }
+
 
         if ((Input.GetKeyDown(KeyCode.Space)) && isUseFruit == true && isFruitStop == false) // 과일 사용
-        {   
+        {
             UseFruit();
         }
 
         if ((Input.GetKeyDown(KeyCode.Q)) && GameManager.Instance.fruitManager.isEatApple == true && isReadyFruit == true && isFruitStop == false) // 사과(1) 준비
         {
             ReadyFruit(1);
+
         }
 
         if ((Input.GetKeyDown(KeyCode.W)) && GameManager.Instance.fruitManager.isEatBanana == true && isReadyFruit == true && isFruitStop == false) // 바나나(2) 준비
@@ -205,5 +221,15 @@ public class Player : MonoBehaviour
         isLive = false;
         SpawnManager.instance.deathCount++;
         gameObject.SetActive(false);
+    }
+
+    public void EmotionQuestion()
+    {
+        GameObject.Instantiate(emotionBox[0], new Vector3(transform.position.x, transform.position.y + 0.9f, 0), Quaternion.identity);
+    }
+
+    public void EmotionThink()
+    {
+        GameObject.Instantiate(emotionBox[1], new Vector3(transform.position.x, transform.position.y + 0.9f, 0), Quaternion.identity);
     }
 }

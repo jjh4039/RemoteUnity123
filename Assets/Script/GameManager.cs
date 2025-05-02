@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public IntroduceTextManager introduceTextManager;
     public Bar bar;
     public MainCamera mainCamera;
+    public CutScene cutScene;
 
     void Awake()
     {
