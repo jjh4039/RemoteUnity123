@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Fruits fruits;
     [HideInInspector] public IntroducePosition iPos;
     public LayerMask groundLayer;
-    public int speed;
+    public float speed;
     public float jumpPower;
     public int[] readyFruits;
     public int recentUseFruit;

@@ -10,6 +10,7 @@ public class IntroduceTextManager : MonoBehaviour
     public string[] texts; // 인스펙터에서 텍스트 수 관리
     public Animator boxAnim;
     public GameObject skipGuide;
+    public float textSpeed = 0.2f; // 텍스트 속도
     [HideInInspector] public bool isQuestClear;
     [HideInInspector] public GameObject bar;
     [HideInInspector] public bool isSkip;
@@ -153,15 +154,15 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 9:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "어.. 근데\n저 <color=#ff696b>사</color>";
                             break;
                         case 10:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "어.. 근데\n저 <color=#ff696b>사과</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -173,15 +174,15 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 1:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "'<color=#ff696b>점</color>";
                             break;
                         case 2:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "'<color=#ff696b>점프</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -193,31 +194,31 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 0:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>특</color>";
                             break;
                         case 1:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>특정</color>";
                             break;
                         case 2:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>특정한</color>";
                             break;
                         case 4:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>특정한 키</color>";
                             break;
                         case 17:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>특정한 키</color>를 눌러\n과일 능력을 <color=#ff696b>준</color>";
                             break;
                         case 18:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>특정한 키</color>를 눌러\n과일 능력을 <color=#ff696b>준비</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -229,47 +230,47 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 0:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>S</color>";
                             break;
                         case 1:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Sp</color>";
                             break;
                         case 2:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Spa</color>";
                             break;
                         case 3:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Spac</color>";
                             break;
                         case 4:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Space</color>";
                             break;
                         case 6:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Space B</color>";
                             break;
                         case 7:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Space Ba</color>";
                             break;
                         case 8:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Space Bar</color>";
                             break;
                         case 18:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Space Bar</color>를 눌러\n능력을 <color=#FF1212>발</color>";
                             break;
                         case 19:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>Space Bar</color>를 눌러\n능력을 <color=#FF1212>발현</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -281,19 +282,19 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 12:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "바로 갈게요, 사과는\n<color=#ff696b>『</color>";
                             break;
                         case 13:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "바로 갈게요, 사과는\n<color=#ff696b>『Q</color>";
                             break;
                         case 14:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "바로 갈게요, 사과는\n<color=#ff696b>『Q』</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -304,16 +305,16 @@ public class IntroduceTextManager : MonoBehaviour
                 {
                     switch (i)
                     {
-                        case 11:
-                            yield return new WaitForSeconds(0.06f);
+                        case 11:    
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "잘했어요,\n이번에는 <color=#FF1212>발</color>";
                             break;
                         case 12:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "잘했어요,\n이번에는 <color=#FF1212>발현</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -325,23 +326,23 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 0:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>준</color>";
                             break;
                         case 1:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>준비</color>";
                             break;
                         case 4:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>준비</color>와 <color=#ff1212>발</color>";
                             break;
                         case 5:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#ff696b>준비</color>와 <color=#ff1212>발현</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -353,23 +354,23 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 6:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "1. 항상 <color=#ff1212>모</color>";
                             break;
-                        case 7:
-                            yield return new WaitForSeconds(0.06f);
+                        case 7: 
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "1. 항상 <color=#ff1212>모든</color>";
                             break;
                         case 9:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "1. 항상 <color=#ff1212>모든 칸</color>";
                             break;
                         case 10:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "1. 항상 <color=#ff1212>모든 칸을</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -381,39 +382,39 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 3:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "2. <color=#ff1212>같</color>";
                             break;
                         case 4:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "2. <color=#ff1212>같은</color>";
                             break;
                         case 6:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "2. <color=#ff1212>같은 과</color>";
                             break;
                         case 7:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "2. <color=#ff1212>같은 과일</color>";
                             break;
                         case 9:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "2. <color=#ff1212>같은 과일 연</color>";
                             break;
                         case 10:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "2. <color=#ff1212>같은 과일 연속</color>";
                             break;
                         case 11:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "2. <color=#ff1212>같은 과일 연속발</color>";
                             break;
                         case 12:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "2. <color=#ff1212>같은 과일 연속발현</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -425,19 +426,19 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 15:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFD700>『</color>";
                             break;
                         case 16:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFD700>『W</color>";
                             break;
                         case 17:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "설명을 줄일게요,\n바나나는 <color=#FFD700>『W』</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -449,19 +450,19 @@ public class IntroduceTextManager : MonoBehaviour
                     switch (i)
                     {
                         case 0:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>섞</color>";
                             break;
                         case 2:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>섞</color> <color=#FFD700>어</color>";
                             break;
                         case 4:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text = "<color=#FF1212>섞</color> <color=#FFD700>어</color> <color=#FF1212>서</color>";
                             break;
                         default:
-                            yield return new WaitForSeconds(0.06f);
+                            yield return new WaitForSeconds(textSpeed);
                             introduceText.text += texts[TextIndex][i];
                             break;
                     }
@@ -471,7 +472,7 @@ public class IntroduceTextManager : MonoBehaviour
             default:
                 for (int i = 0; i < texts[TextIndex].Length; i++)
                 {
-                    yield return new WaitForSeconds(0.06f);
+                    yield return new WaitForSeconds(textSpeed);
                     introduceText.text += texts[TextIndex][i];
                 }
                 break;

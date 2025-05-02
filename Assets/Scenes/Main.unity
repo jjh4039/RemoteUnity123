@@ -11415,7 +11415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4898735038382110718, guid: d21b6263c9bbe3e47be6720a4b7c7662, type: 3}
       propertyPath: m_Name
-      value: Checkpoint (1)
+      value: Checkpoint2
       objectReference: {fileID: 0}
     - target: {fileID: 4898735038382110718, guid: d21b6263c9bbe3e47be6720a4b7c7662, type: 3}
       propertyPath: m_IsActive
@@ -16744,7 +16744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9124744888804213397, guid: 9b1789a47e6d9274f829400f11b63210, type: 3}
       propertyPath: speed
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 9124744888804213397, guid: 9b1789a47e6d9274f829400f11b63210, type: 3}
       propertyPath: jumpPower
@@ -26794,7 +26794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 0, y: 0}
   m_UseGraphicAlpha: 1
 --- !u!1 &1734729051
 GameObject:
