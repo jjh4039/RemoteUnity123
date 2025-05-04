@@ -8,6 +8,7 @@ TagManager:
   - Introduce
   - Enemy
   - Traps
+  - Ground
   layers:
   - Default
   - TransparentFX
