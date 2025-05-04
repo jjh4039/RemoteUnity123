@@ -62,7 +62,6 @@ public class Player : MonoBehaviour
             else if (leftRight > 0) spriteRen.flipX = false; // 이동하는 방향 바라보기
         }
 
-
         if (isCut == false) { 
             if (leftRight != 0) anim.SetBool("Move", true);
             else anim.SetBool("Move", false);
@@ -221,6 +220,7 @@ public class Player : MonoBehaviour
         isLive = false;
         SpawnManager.instance.deathCount++;
         gameObject.SetActive(false);
+        GameManager.Instance.gameOver.gameOverUi.SetActive(true);
     }
 
     public void EmotionQuestion()

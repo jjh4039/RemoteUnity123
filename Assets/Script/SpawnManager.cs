@@ -34,8 +34,9 @@ public class SpawnManager : MonoBehaviour
     {
         player.gameObject.SetActive(true);
         player.transform.position = spawnPoint;
+        GameManager.Instance.gameOver.gameOverUi.SetActive(false);
 
-        if(deathCount == 1)
+        if (deathCount == 1)
         {
             GameManager.Instance.introduceTextManager.StartCoroutine("FirstDie");
         }

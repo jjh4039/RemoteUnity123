@@ -13,6 +13,7 @@ public class CheckPoint : MonoBehaviour
     [HideInInspector] public Animator animator;
     public Text spawnText;
     public CanvasGroup textAlpha;
+    public int checkPointIndex;
 
     void Start()
     {
@@ -41,6 +42,18 @@ public class CheckPoint : MonoBehaviour
             StartCoroutine(FlagOut());
             StartCoroutine(TextFlow());
             SpawnManager.instance.spawnPoint = transform.position;
+
+
+        // 마지막 체크포인트 문구
+        switch(checkPointIndex)
+            {
+                case 0:
+                    GameManager.Instance.gameOver.lastSavePoint = "바나나 연습 코스";
+                    break;
+                case 1:
+                    GameManager.Instance.gameOver.lastSavePoint = "최종 코스";
+                    break;
+            }
         }
     }
 

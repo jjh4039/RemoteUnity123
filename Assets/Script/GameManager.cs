@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public Bar bar;
     public MainCamera mainCamera;
     public CutScene cutScene;
+    public GameOver gameOver;
 
     void Awake()
     {
