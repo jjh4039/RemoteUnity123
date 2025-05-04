@@ -120,9 +120,11 @@ public class IntroduceTextManager : MonoBehaviour
         GameManager.Instance.player.spriteRen.flipX = false;
         bar.SetActive(false);
         GameManager.Instance.player.rigid.linearVelocity = new Vector2(1f * GameManager.Instance.player.speed, 0f);
+        GameManager.Instance.sceneStep.readyScene("Loading");
         yield return new WaitForSeconds(1f);
         GameManager.Instance.player.rigid.linearVelocity = new Vector2(0f * GameManager.Instance.player.speed, 0f);
         yield return new WaitForSeconds(1f);
+        
 
         GameManager.Instance.player.spriteRen.flipX = true;
         yield return new WaitForSeconds(0.5f);
@@ -146,6 +148,8 @@ public class IntroduceTextManager : MonoBehaviour
         Time.timeScale = 0.5f;
         GameManager.Instance.cutScene.StartCoroutine("PadeOut");
 
+        yield return new WaitForSeconds(0.9f);
+        GameManager.Instance.sceneStep.loadScene("Loading");
     }
 
 

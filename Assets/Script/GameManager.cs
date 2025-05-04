@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public MainCamera mainCamera;
     public CutScene cutScene;
     public GameOver gameOver;
+    public SceneStep sceneStep;
 
     void Awake()
     {

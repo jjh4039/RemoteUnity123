@@ -11331,6 +11331,7 @@ GameObject:
   - component: {fileID: 802068420}
   - component: {fileID: 802068422}
   - component: {fileID: 802068423}
+  - component: {fileID: 802068424}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11357,6 +11358,7 @@ MonoBehaviour:
   mainCamera: {fileID: 519420033}
   cutScene: {fileID: 656326319}
   gameOver: {fileID: 1913792453}
+  sceneStep: {fileID: 802068424}
 --- !u!4 &802068421
 Transform:
   m_ObjectHideFlags: 0
@@ -11400,6 +11402,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar: {fileID: 876203646}
+--- !u!114 &802068424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802068418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b7f36003be1a243bafcd82ec59c03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &825337531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16764,7 +16778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!114 &1046666684
 MonoBehaviour:
@@ -26860,7 +26874,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.51761436, y: 0.13067383}
+  m_Offset: {x: 0.48815727, y: 0.13067383}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -26870,7 +26884,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.4661064, y: 1.2613479}
+  m_Size: {x: 4.274639, y: 1.2613479}
   m_EdgeRadius: 0
 --- !u!1001 &1520130599
 PrefabInstance:
