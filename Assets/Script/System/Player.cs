@@ -8,6 +8,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    [Header("Component Manage")]
     [HideInInspector] public Rigidbody2D rigid;
     [HideInInspector] public BoxCollider2D colider;
     [HideInInspector] public SpriteRenderer spriteRen;
@@ -18,10 +19,14 @@ public class Player : MonoBehaviour
     [HideInInspector] public IntroducePosition iPos;
     public GameObject[] emotionBox;
     public LayerMask groundLayer;
+
+    [Header("Field")]
     public float speed;
     public float jumpPower;
     public int[] readyFruits;
     public int recentUseFruit;
+
+    [Header("Trigger")]
     public bool isDash;
     public bool isMove;
     public bool isCut;

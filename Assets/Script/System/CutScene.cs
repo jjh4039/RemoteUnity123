@@ -8,7 +8,13 @@ public class CutScene : MonoBehaviour
     public CanvasGroup pade;
     public GameObject skipText;
 
-    // 컷신 레터박스 & 자막
+    [Header("Trigger")]
+    // 다음 신 로딩 완료여부
+    public bool isSkipCutScene = false;
+    // 컷신 레터박스 완료여부
+    public bool isCutSceneBoxEnd = false;
+
+    // 컷신 레터박스
     public IEnumerator CutSceneStart()
     {
         for (int i = 0; i < 100; i++) 
@@ -18,7 +24,20 @@ public class CutScene : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(0.3f);
-        skipText.SetActive(true);
+        isCutSceneBoxEnd = true;
+    }
+
+    public void Update()
+    {
+        if (isSkipCutScene == true && isCutSceneBoxEnd == true)
+        {
+            skipText.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                StartCoroutine(PadeOut());
+                isSkipCutScene = false;
+            }
+        }
     }
 
     // 페이드 아웃
@@ -27,7 +46,9 @@ public class CutScene : MonoBehaviour
         for(int i = 0; i < 100; i++)
         {
             pade.alpha += 0.01f;
-            yield return new WaitForSeconds(0.006f);
+            yield return new WaitForSeconds(0.005f);
         }
+
+        GameManager.Instance.sceneStep.loadScene("Loading");
     }
 }

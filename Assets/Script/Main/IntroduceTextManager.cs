@@ -147,9 +147,6 @@ public class IntroduceTextManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Time.timeScale = 0.5f;
         GameManager.Instance.cutScene.StartCoroutine("PadeOut");
-
-        yield return new WaitForSeconds(0.7f);
-        GameManager.Instance.sceneStep.loadScene("Loading");
     }
 
 
