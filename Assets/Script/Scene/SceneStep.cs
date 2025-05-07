@@ -16,11 +16,13 @@ public class SceneStep : MonoBehaviour
         Debug.Log("준비");
         asyncOp = SceneManager.LoadSceneAsync(sceneName);
         asyncOp.allowSceneActivation = false;
+        GameManager.Instance.cutScene.isSkipCutScene = true;
     }
 
     public void loadScene(string sceneName)
     {
         Debug.Log("로드");
         asyncOp.allowSceneActivation = true;
+        GameManager.Instance.cutScene.isSkipCutScene = false;
     }
 }

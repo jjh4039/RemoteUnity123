@@ -47,7 +47,7 @@ public class LoadingSceneManager : MonoBehaviour
         // 로딩 중
         if (loadingPer <= 0.91f + (sceneStep.asyncOp.progress / 10f))
         {
-            loadingPer += Time.deltaTime * 0.2f;
+            loadingPer += Time.deltaTime * 0.33f;
         }
 
         // 로딩 완료
