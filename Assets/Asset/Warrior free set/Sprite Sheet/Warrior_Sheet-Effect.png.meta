@@ -650,7 +650,7 @@ TextureImporter:
       name: Warrior_Sheet-Effect_10
       rect:
         serializedVersion: 2
-        x: 275
+        x: 276
         y: 660
         width: 69
         height: 44
@@ -1574,7 +1574,7 @@ TextureImporter:
       name: Warrior_Sheet-Effect_52
       rect:
         serializedVersion: 2
-        x: 277
+        x: 276
         y: 352
         width: 69
         height: 44
