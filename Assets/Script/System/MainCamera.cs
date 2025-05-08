@@ -7,7 +7,6 @@ public class MainCamera : MonoBehaviour
     public float smoothTimePosition = 0.2f;
     private Vector3 velocityPosition = Vector3.zero;
     public Camera mainCamera;
-
     void Start()
     {
         mainCamera = GetComponent<Camera>();
@@ -20,6 +19,10 @@ public class MainCamera : MonoBehaviour
         {
             case 0:
                 transform.position = new Vector3(GameManager.Instance.player.transform.position.x + 3f, 0.265f, -10);
+                if (transform.position.x < 1.53)
+                {
+                    transform.position = new Vector3(1.53f, 0.265f, -10);
+                }
                 break;
             case 1:
                 transform.position = Vector3.SmoothDamp(transform.position, new Vector3(GameManager.Instance.player.transform.position.x + 6.2f, 3.3f, -10f), ref velocityPosition, smoothTimePosition);
@@ -30,12 +33,16 @@ public class MainCamera : MonoBehaviour
             case 3:
                 transform.position = Vector3.SmoothDamp(transform.position, new Vector3(120.4f, 2f, -10f), ref velocityPosition, 0.15f);
                 break;
+            case 4:
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(GameManager.Instance.player.transform.position.x + 3f, -0.1f, -10), ref velocityPosition, smoothTimePosition);
+                if (transform.position.x < -9.4)
+                {
+                    transform.position = new Vector3(-9.4f, -0.1f, -10);
+                }
+                break;
         }
-        
-        if (transform.position.x < 1.53)
-        {
-            transform.position = new Vector3(1.53f, 0.265f, -10);
-        }
+
+
     }
 
     public IEnumerator SizeFiveZoom()
