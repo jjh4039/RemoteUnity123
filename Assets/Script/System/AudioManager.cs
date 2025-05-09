@@ -1,7 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField]
     public static AudioManager instance;
 
     [Header("#BGM")]
@@ -22,6 +24,7 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
         Init();
+        PlayBgm(true);
     }
 
     void Init()

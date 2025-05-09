@@ -15,6 +15,5 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        AudioManager.instance.PlayBgm(true);
     }
 }

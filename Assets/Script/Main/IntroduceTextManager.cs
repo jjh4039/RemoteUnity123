@@ -17,13 +17,13 @@ public class IntroduceTextManager : MonoBehaviour
     [HideInInspector] public int skipNum;
     [HideInInspector] public int TmpCheck1;
 
-    private void Awake()
+    private void Start()
     {
         GameManager.Instance.player.isMove = false;
-        StartCoroutine(FristStep()); // 튜토리얼 시작
         TextSet(); // String Setting
         skipNum = 0;
         TmpCheck1 = -1;
+        StartCoroutine(FristStep()); // 튜토리얼 시작
     }
 
     public void Update()
