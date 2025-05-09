@@ -11,6 +11,7 @@ public class SkipTest : MonoBehaviour
             GameManager.Instance.player.isFruitStop = false;
             GameManager.Instance.player.transform.position = new Vector3(35f, 0f, 0f);
             GameManager.Instance.fruitManager.isEatApple = true;
+            GameManager.Instance.mainCamera.cameraLevel = 0;
             GameManager.Instance.introduceTextManager.isQuestClear = true;
             bar.SetActive(true);
         }

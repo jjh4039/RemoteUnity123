@@ -10,7 +10,6 @@ public class MainCamera : MonoBehaviour
     void Start()
     {
         mainCamera = GetComponent<Camera>();
-        transform.position = GameManager.Instance.player.transform.position;
     }
 
     void FixedUpdate()
@@ -18,10 +17,10 @@ public class MainCamera : MonoBehaviour
         switch (cameraLevel)
         {
             case 0:
-                transform.position = new Vector3(GameManager.Instance.player.transform.position.x + 3f, 0.265f, -10);
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(GameManager.Instance.player.transform.position.x + 3f, 0.55f, -10), ref velocityPosition, 0.1f);
                 if (transform.position.x < 1.53)
                 {
-                    transform.position = new Vector3(1.53f, 0.265f, -10);
+                    transform.position = new Vector3(1.53f, 0.55f, -10);
                 }
                 break;
             case 1:

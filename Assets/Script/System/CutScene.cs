@@ -4,6 +4,7 @@ using System.Collections;
 
 public class CutScene : MonoBehaviour
 {
+    public GameObject letterBox;
     public Image[] CutSceneBox;
     public CanvasGroup pade;
     public GameObject skipText;
@@ -17,6 +18,8 @@ public class CutScene : MonoBehaviour
     // 컷신 레터박스
     public IEnumerator CutSceneStart()
     {
+        letterBox.SetActive(true);
+
         for (int i = 0; i < 100; i++) 
         {
             CutSceneBox[0].rectTransform.localPosition = new Vector3(0, CutSceneBox[0].rectTransform.localPosition.y - 1, 0);

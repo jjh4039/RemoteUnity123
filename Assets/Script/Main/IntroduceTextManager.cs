@@ -156,6 +156,8 @@ public class IntroduceTextManager : MonoBehaviour
         StartCoroutine(AlphaOn());
         introduceText.text = "";
         isSkip = false;
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Typing);
+
         switch (TextIndex) // 텍스트 박스 관리
         {
             // 시작부분
@@ -537,6 +539,8 @@ public class IntroduceTextManager : MonoBehaviour
                 isSkip = true;
                 break;
         }
+
+        AudioManager.instance.StopSfx(AudioManager.Sfx.Typing);
     }
 
     IEnumerator AlphaOn()
@@ -574,7 +578,7 @@ public class IntroduceTextManager : MonoBehaviour
         texts[1] = "우선 저 앞으로\n달려볼까요?";
         texts[2] = "방향키를 눌러\n좌우로 이동하기";
         texts[3] = "잘했어요!";
-        texts[4] = "어.. 근데\n저 사과는 뭐죠? ";
+        texts[4] = "어.. 근데\n저 사과는 뭐죠?";
         texts[5] = "'점프를 이용할 수 있다'\n라고 적혀있는데...";
         texts[6] = "사과를 향해\n이동하기";
         texts[7] = "맞아요.. 간단하게\n설명해 드릴게요";
