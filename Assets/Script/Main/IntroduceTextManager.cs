@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using JetBrains.Annotations;
+using UnityEngine.Rendering;
 
 public class IntroduceTextManager : MonoBehaviour
 {
@@ -16,14 +18,24 @@ public class IntroduceTextManager : MonoBehaviour
     [HideInInspector] public bool isSkip;
     [HideInInspector] public int skipNum;
     [HideInInspector] public int TmpCheck1;
+    public string sortingLayerName = "Text"; // UI 정렬 레이어
+    public int orderInLayer = 15; // UI 정렬 레이어 순서
 
     private void Start()
     {
+       
         GameManager.Instance.player.isMove = false;
         TextSet(); // String Setting
         skipNum = 0;
         TmpCheck1 = -1;
         StartCoroutine(FristStep()); // 튜토리얼 시작
+
+        Renderer textRen = GameObject.Find("IntroduceText").GetComponent<SpriteRenderer>();
+        if (textRen != null)
+        {
+            textRen.sortingLayerName = sortingLayerName;
+            textRen.sortingOrder = orderInLayer;
+        }
     }
 
     public void Update()
@@ -554,6 +566,7 @@ public class IntroduceTextManager : MonoBehaviour
             canvasGroup.alpha = i;
             yield return new WaitForSeconds(0.025f);
         }
+        canvasGroup.alpha = 1f;
     }
 
     IEnumerator BoxOn()

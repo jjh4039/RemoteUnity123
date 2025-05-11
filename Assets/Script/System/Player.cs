@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
         {
             isFocus = true;
             isUseFruit = true;
+            GameManager.Instance.barUi.StartCoroutine("FoucsEffect"); // 바 UI 포커스 효과
             GameManager.Instance.barUi.SetMainText(BarUi.SettingText.ready); // 바 UI 텍스트 변경
             Time.timeScale = 0.25f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
@@ -132,6 +133,8 @@ public class Player : MonoBehaviour
         {
             isFocus = false;
             isUseFruit = false;
+            GameManager.Instance.barUi.StopCoroutine("FoucsEffect");
+            GameManager.Instance.barUi.StartCoroutine("FoucsEffectOff");
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             recentReadyFruit = 0; // 연속방지변수 초기화
@@ -146,7 +149,7 @@ public class Player : MonoBehaviour
         {
             if (fruitId == recentReadyFruit) // 같은 과일 준비 불가
             {
-                // 작동 X, 과일이 연속된다는 문구.
+                GameManager.Instance.barUi.StartCoroutine("Error"); // 바 UI 에러 텍스트 출력
             }
             else 
             { 
