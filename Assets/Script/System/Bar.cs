@@ -10,6 +10,7 @@ public class Bar : MonoBehaviour
     public Image[] BarsColor;
     public Sprite[] TrunBars;
 
+    public float BarCoolDownTime = 2.2f;
 
     void OnEnable()
     {
@@ -17,6 +18,15 @@ public class Bar : MonoBehaviour
         StartCoroutine(BarOnAlp());
     }
 
+    void Update()
+    {
+        if (BarCoolDownTime >= 0)
+        {
+            BarCoolDownTime -= Time.deltaTime;
+        }
+    }
+
+    // 바 활성화 애니메이션
     IEnumerator BarOnAni()
     {
         MainBar.sprite = TrunBars[5];
@@ -33,6 +43,7 @@ public class Bar : MonoBehaviour
         BarsColor[2].gameObject.SetActive(true);
     }
 
+    // 바 활성화 페이드인
     IEnumerator BarOnAlp()
     {
         MainBarAlp.alpha = 0;
@@ -45,7 +56,10 @@ public class Bar : MonoBehaviour
 
     public IEnumerator BarReadying()
     {
-        yield return new WaitForSeconds(0.03f);
+        BarCoolDownTime = 2.2f;
+        GameManager.Instance.barUi.SetMainText(BarUi.SettingText.cooldown); // 바 UI 텍스트 변경
+
+        yield return new WaitForSeconds(0.02f);
         BarsColor[0].gameObject.SetActive(false);
         BarsColor[1].gameObject.SetActive(false);
         BarsColor[2].gameObject.SetActive(false);
@@ -54,24 +68,28 @@ public class Bar : MonoBehaviour
         MainBar.sprite = TrunBars[3];
         yield return new WaitForSeconds(0.04f);
         MainBar.sprite = TrunBars[4];
-        yield return new WaitForSeconds(0.04f);
+        yield return new WaitForSeconds(0.05f);
         MainBar.sprite = TrunBars[5];
-        yield return new WaitForSeconds(0.04f);
+        yield return new WaitForSeconds(0.05f);
+        MainBar.sprite = TrunBars[7];
+        yield return new WaitForSeconds(0.4f);
+        MainBar.sprite = TrunBars[5];
+        yield return new WaitForSeconds(0.4f);
         MainBar.sprite = TrunBars[4];
-        yield return new WaitForSeconds(0.04f);
+        yield return new WaitForSeconds(0.4f);
         MainBar.sprite = TrunBars[3];
-        yield return new WaitForSeconds(0.04f);
+        yield return new WaitForSeconds(0.4f);
         MainBar.sprite = TrunBars[6];
-        yield return new WaitForSeconds(0.04f);
+        yield return new WaitForSeconds(0.4f);
         MainBar.sprite = TrunBars[0];
-        UseColorChange();
-        GameManager.Instance.player.isUseFruit = true;
-        GameManager.Instance.player.isReadyFruit = false;
+        GameManager.Instance.barUi.SetMainText(BarUi.SettingText.none);
+        GameManager.Instance.player.isReadyFruit = true;
         BarsColor[0].gameObject.SetActive(true);
         BarsColor[1].gameObject.SetActive(true);
         BarsColor[2].gameObject.SetActive(true);
     }
 
+    // 사용가능 색으로 변하기 
     public void UseColorChange()
     {
         for (int i = 0; i < BarsColor.Length; i++)

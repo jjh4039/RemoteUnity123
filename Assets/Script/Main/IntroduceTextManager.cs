@@ -159,6 +159,8 @@ public class IntroduceTextManager : MonoBehaviour
         isSkip = false;
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Typing);
 
+        if (TextIndex == 15) { Time.timeScale = 1f; Time.fixedDeltaTime = 0.02f * Time.timeScale;} // 튜토리얼 슬로우모션 제거
+
         switch (TextIndex) // 텍스트 박스 관리
         {
             // 시작부분
@@ -525,9 +527,9 @@ public class IntroduceTextManager : MonoBehaviour
                 GameManager.Instance.player.isMove = true;
                 GameManager.Instance.player.isFruitStop = false;
                 break;
-            case 14:
+            case 14: // Q 준비 테스트
                 GameManager.Instance.player.isFruitStop = false;
-                TmpCheck1 = 3;
+                TmpCheck1 = 1; 
                 break;
             case 16:
                 GameManager.Instance.player.isFruitStop = false;
@@ -589,7 +591,7 @@ public class IntroduceTextManager : MonoBehaviour
         texts[11] = "Space Bar를 눌러\n능력을 발현할 수 있어요";
         texts[12] = "이해하지 못했어도 좋아요,\n저 앞에서 한번 해보죠";
         texts[13] = "바로 갈게요, 사과는\n『Q』로 준비할 수 있어요";
-        texts[14] = "『Q』를 3번 눌러\n발현 단계로 돌입하기";
+        texts[14] = "『Q』를 눌러\n집중 모드로 돌입하기";
         texts[15] = "잘했어요,\n이번에는 발현이에요";
         texts[16] = "『Space Bar』를 눌러\n능력 발현하기";
         texts[17] = "정확해요,\n이게 전부에요";

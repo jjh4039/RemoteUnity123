@@ -57,11 +57,9 @@ public class AudioManager : MonoBehaviour
             int loopIndex = (index + channelIndex) % sfxPlayers.Length;
 
             if (sfxPlayers[index].isPlaying) { 
-                Debug.Log("채널 검사");
                 continue;
             }
 
-            Debug.Log("사운드 출력");
             channelIndex = loopIndex;
             sfxPlayers[loopIndex].clip = sfxClips[(int)sfx];
             sfxPlayers[loopIndex].Play();
@@ -99,7 +97,7 @@ public class AudioManager : MonoBehaviour
             bgmPlayer.Play();
         }
 
-        else{
+        else {
             bgmPlayer.Stop();
         }
     }

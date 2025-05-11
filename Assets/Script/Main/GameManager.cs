@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public IntroduceTextManager introduceTextManager;
     public Bar bar;
+    public BarUi barUi;
     public MainCamera mainCamera;
     public CutScene cutScene;
     public GameOver gameOver;

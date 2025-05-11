@@ -8,7 +8,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    [Header("Component Manage")]
+    [Header("Component")]
     [HideInInspector] public Rigidbody2D rigid;
     [HideInInspector] public BoxCollider2D colider;
     [HideInInspector] public SpriteRenderer spriteRen;
@@ -24,15 +24,16 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpPower;
     public int[] readyFruits;
-    public int recentUseFruit;
+    public int recentReadyFruit;
 
     [Header("Trigger")]
     public bool isDash;
     public bool isMove;
     public bool isCut;
-    public bool isUseFruit;
-    public bool isReadyFruit;
-    public bool isFruitStop;
+    public bool isUseFruit; // 과일 발현이 가능한가?
+    public bool isReadyFruit; // 과일 준비 가능 상태인가?
+    public bool isFruitStop; // 과일과 관련된 모든 기능 잠금
+    public bool isFocus; 
     public bool isLive; // 플레이어 생존여부
 
     void Start()
@@ -81,9 +82,9 @@ public class Player : MonoBehaviour
         }
 
 
-        if ((Input.GetKeyDown(KeyCode.Space)) && isUseFruit == true && isFruitStop == false) // 과일 사용
+        if ((Input.GetKeyDown(KeyCode.Space)) && isFruitStop == false && isUseFruit == true) // 과일 사용
         {
-            UseFruit();
+            StartCoroutine("UseFruit");
         }
 
         if ((Input.GetKeyDown(KeyCode.Q)) && GameManager.Instance.fruitManager.isEatApple == true && isReadyFruit == true && isFruitStop == false) // 사과(1) 준비
@@ -117,80 +118,103 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Focus(bool condition) // 포커스 모드 관리
+    {
+        if (condition == true) // 포커스 시작
+        {
+            isFocus = true;
+            isUseFruit = true;
+            GameManager.Instance.barUi.SetMainText(BarUi.SettingText.ready); // 바 UI 텍스트 변경
+            Time.timeScale = 0.25f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+        else // 포커스 해제 = 발현
+        {
+            isFocus = false;
+            isUseFruit = false;
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            recentReadyFruit = 0; // 연속방지변수 초기화
+            GameManager.Instance.bar.UseColorChange(); // 발현 바 색 조정
+            GameManager.Instance.barUi.SetMainText(BarUi.SettingText.none); // 발현 UI 텍스트 변경
+        }
+    }
+
     void ReadyFruit(int fruitId) // 과일 준비 (과일 번호)
     {
         for (int i = 0; i < readyFruits.Length; i++)
         {
-            if (readyFruits[i] == 0)
+            if (fruitId == recentReadyFruit) // 같은 과일 준비 불가
             {
-                readyFruits[i] = fruitId;
-                switch (fruitId)
+                // 작동 X, 과일이 연속된다는 문구.
+            }
+            else 
+            { 
+                if (readyFruits[i] == 0)
                 {
-                    case 1:
-                        GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 0.65f, 0.62f, 1f);
-                        break;
-                    case 2:
-                        GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 1f, 0.71f, 1f);
-                        break;
+                    if (i == 0) { Focus(true); } // 첫번째 과일 준비 시 자동 포커스 모드 시작
+
+                    readyFruits[i] = fruitId;
+                    switch (fruitId)
+                    {
+                        case 1:
+                            GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 0.65f, 0.62f, 1f);
+                            recentReadyFruit = 1;
+                            break;
+                        case 2:
+                            GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 1f, 0.71f, 1f);
+                            recentReadyFruit = 2;
+                            break;
+                    }
+                    if (i == readyFruits.Length - 1) // 전부 채웠을 때 색바꾸기 & 발현하세요!
+                        {
+                            GameManager.Instance.bar.UseColorChange(); 
+                            GameManager.Instance.barUi.SetMainText(BarUi.SettingText.full); // 바 UI 텍스트 변경
+                    }
+                    break;
                 }
-                if (i == readyFruits.Length - 1)
-                {
-                    GameManager.Instance.bar.StartCoroutine("BarReadying");
-                }
-                break;
             }
         }
     }
 
-    void UseFruit() // 과일 사용
+    IEnumerator UseFruit() // 과일 사용
     {
+        Focus(false); // 발현 시 포커스 해제
+        isReadyFruit = false;
 
-        for (int i = 0; i <= readyFruits.Length; i++)
+
+        for (int i = 0; i <= readyFruits.Length - 1; i++)
         {
             if (readyFruits[i] != 0)
             {
-                if (readyFruits[i] == recentUseFruit)
                 {
-                    Debug.Log("과일 연속 사용 금지");
-                    break;
-                }
-                else 
-                { 
-                    switch (readyFruits[i])
+                    switch (readyFruits[i]) // 과일 번호
                     {
                         case 1:
                             rigid.linearVelocityY = jumpPower;
-                            recentUseFruit = 1;
                             break;
                         case 2:
                             StartCoroutine(Dash());
-                            recentUseFruit = 2;
-                            break;
-                        default:
-                            Debug.Log("과일 사용 버그");
                             break;
                     }
                     GameManager.Instance.bar.BarsColor[i].color = Color.white;
-                    GameManager.Instance.fruitManager.FruitUseParticle(recentUseFruit);
-                    StopCoroutine("RecentFruitReset"); // 중복 초기화 금지 용도
-                    StartCoroutine("RecentFruitReset"); // 연속 사용 금지 코루틴 시작
-                    if (i == readyFruits.Length - 1) // 마지막꺼 사용했으면
+                    GameManager.Instance.fruitManager.FruitUseParticle(readyFruits[i]);
+
+                    if (i == readyFruits.Length - 1) // 발현 종료 검증A : 마지막 칸 사용했으면 
                     {
-                        isUseFruit = false;
-                        isReadyFruit = true;
+                        GameManager.Instance.bar.StartCoroutine("BarReadying");
                     }
+                    else if (readyFruits[i + 1] == 0) // 발현 종료 검증B : 다음이 마지막일때
+                    {  
+                        GameManager.Instance.bar.StartCoroutine("BarReadying");
+                    }
+
                     readyFruits[i] = 0;
-                    break;
+                    yield return new WaitForSeconds(0.35f);
+                    // break;
                 }
             }
         }
-    }
-
-    IEnumerator RecentFruitReset() // 연속 사용 금지 코루틴
-    {
-        yield return new WaitForSeconds(1.0f);
-        recentUseFruit = 0;
-        Debug.Log("최근 과일 사용 기록 초기화");
     }
 
     IEnumerator Dash()
