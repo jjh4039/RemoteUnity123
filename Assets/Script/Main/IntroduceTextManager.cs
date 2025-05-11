@@ -56,6 +56,7 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator FristStep()
     {
+        GameManager.Instance.cutScene.StartCoroutine("PadeIn");
         introduceText.rectTransform.anchoredPosition = new Vector2(-1281.47f, -720.26f);
         isQuestClear = true; // 처음만 기본값 설정
         StartCoroutine(Say(0));

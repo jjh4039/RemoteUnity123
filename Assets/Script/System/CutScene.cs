@@ -30,8 +30,14 @@ public class CutScene : MonoBehaviour
         isCutSceneBoxEnd = true;
     }
 
+    public void Awake()
+    {
+        pade.alpha = 1f;
+    }
+
     public void Update()
     {
+        // ½ºÅµ Á¡°Ë
         if (isSkipCutScene == true && isCutSceneBoxEnd == true)
         {
             skipText.SetActive(true);
@@ -40,6 +46,15 @@ public class CutScene : MonoBehaviour
                 StartCoroutine(PadeOut());
                 isSkipCutScene = false;
             }
+        }
+    }
+
+    public IEnumerator PadeIn()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            pade.alpha -= 0.01f;
+            yield return new WaitForSeconds(0.005f);
         }
     }
 
