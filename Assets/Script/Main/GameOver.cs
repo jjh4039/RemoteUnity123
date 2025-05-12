@@ -4,6 +4,7 @@ using System.Collections;
 
 public class GameOver : MonoBehaviour
 {
+    [Header("Component")]
     public GameObject gameOverUi;
     public Text lastSavePointText;
     public string lastSavePoint;

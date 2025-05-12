@@ -5,7 +5,7 @@ using System.Collections;
 
 public class LoadingSceneManager : MonoBehaviour
 {
-    [Header("Component Manage")]
+    [Header("Component")]
     public Text loadingText;
     public Text[] destinationText;
     public Text tipText;

@@ -3,10 +3,14 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     static public SpawnManager instance;
-    [HideInInspector] public GameObject player;
-    [HideInInspector] public Vector3 spawnPoint;
+
+    [Header("Component")]
+    public GameObject player;
     private GameObject LivingPlayer;
+
+    [Header("Field")]
     public int deathCount;
+    public Vector3 spawnPoint;
 
     void Start()
     {
@@ -42,20 +46,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    /*public void Respawn()
-    {
-        if (GameManager.Instance.player.isLive)
-        {
-            LivingPlayer = Instantiate(player, SpawnPoint, Quaternion.identity);
-            LivingPlayer.name = "Player";
-            Player p1 = LivingPlayer.GetComponent<Player>();
-            GameManager.Instance.player = p1;
-            p1.enabled = false;
-            GameManager.Instance.player.isLive = false;
-        }
-    }
-    */
-
     public void Kill()
     {
         if (!GameManager.Instance.player.isLive)
@@ -76,7 +66,6 @@ public class SpawnManager : MonoBehaviour
                 GameManager.Instance.player = null;
                 GameManager.Instance.player.isLive = true;
             }
-        }
-        
+        } 
     }
 }

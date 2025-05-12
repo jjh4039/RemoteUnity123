@@ -64,14 +64,13 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[loopIndex].clip = sfxClips[(int)sfx];
             sfxPlayers[loopIndex].Play();
             
-            switch (sfx)
+            switch (sfx) // 예외처리
             {
                 case Sfx.Typing:
                     sfxPlayers[loopIndex].pitch = Random.Range(1f, 1.2f);
                     sfxPlayers[loopIndex].loop = true;
                     break;
             }
-
             break;
         }
     }

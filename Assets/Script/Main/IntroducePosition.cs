@@ -3,6 +3,7 @@ using System.Collections;
 
 public class IntroducePosition : MonoBehaviour
 {
+    [Header("Field")]
     public int introduceID;
 
     public void introduceStart()

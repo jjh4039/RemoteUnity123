@@ -4,6 +4,7 @@ using System.Collections;
 
 public class SceneStep : MonoBehaviour
 {
+    [Header("Component")]
     public AsyncOperation asyncOp;
 
     void Update()

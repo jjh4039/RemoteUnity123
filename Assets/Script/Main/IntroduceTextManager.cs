@@ -7,23 +7,25 @@ using UnityEngine.Rendering;
 
 public class IntroduceTextManager : MonoBehaviour
 {
-    [HideInInspector] public Text introduceText;
-    [HideInInspector] public CanvasGroup canvasGroup;
-    public string[] texts; // 인스펙터에서 텍스트 수 관리
+    [Header("Component")]
     public Animator boxAnim;
     public GameObject skipGuide;
-    public float textSpeed; // 텍스트 속도
+    [HideInInspector] public Text introduceText;
+    [HideInInspector] public CanvasGroup canvasGroup;
     [HideInInspector] public bool isQuestClear;
     [HideInInspector] public GameObject bar;
     [HideInInspector] public bool isSkip;
-    [HideInInspector] public int skipNum;
-    [HideInInspector] public int TmpCheck1;
+    [HideInInspector] public int skipNum; // 스킵 번호
+    [HideInInspector] public int TmpCheck1; // 튜토리얼 준비연습
+
+    [Header("Field")]
+    public string[] texts; // 인스펙터에서 텍스트 수 관리
+    public float textSpeed; // 텍스트 속도
     public string sortingLayerName = "Text"; // UI 정렬 레이어
     public int orderInLayer = 15; // UI 정렬 레이어 순서
 
     private void Start()
-    {
-       
+    { 
         GameManager.Instance.player.isMove = false;
         TextSet(); // String Setting
         skipNum = 0;
@@ -572,19 +574,13 @@ public class IntroduceTextManager : MonoBehaviour
     IEnumerator BoxOn()
     {
         boxAnim.SetBool("Live", true);
-        for (float i = 0; i < 1; i += 0.1f) // ??
-        {
-            yield return new WaitForSeconds(0.025f);
-        }
+        yield return new WaitForSeconds(0f);
     }
 
     IEnumerator BoxOff()
     {
         boxAnim.SetBool("Live", false);
-        for (float i = 0; i < 1; i -= 0.1f)
-        {
-            yield return new WaitForSeconds(0.025f);
-        }
+        yield return new WaitForSeconds(0f);
     }
 
     public void TextSet()

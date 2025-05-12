@@ -62,7 +62,7 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
-                SpawnManager.instance.Kill();
+                // SpawnManager.instance.Kill();
             }
 
         }
