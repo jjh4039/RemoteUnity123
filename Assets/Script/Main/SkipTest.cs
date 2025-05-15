@@ -3,7 +3,7 @@ using UnityEngine;
 public class SkipTest : MonoBehaviour
 {
     public GameObject bar;
-
+    // branch merge Test
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F1)) { 
