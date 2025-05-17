@@ -20330,8 +20330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1299626395}
-  spawnPoint: {x: 0, y: 0, z: 0}
   deathCount: 0
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &802068423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26087,8 +26087,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07724a9e85465e248a5d34f6ce6039c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxAnim: {fileID: 781701146}
+  skipGuide: {fileID: 261619614}
   introduceText: {fileID: 1733690932}
   canvasGroup: {fileID: 1733690934}
+  isQuestClear: 0
+  bar: {fileID: 876203646}
+  isSkip: 0
+  skipNum: 0
+  TmpCheck1: 0
   texts:
   - 0
   - 1
@@ -26140,14 +26147,7 @@ MonoBehaviour:
   - 2
   - 2
   - 2
-  boxAnim: {fileID: 781701146}
-  skipGuide: {fileID: 261619614}
   textSpeed: 0.053
-  isQuestClear: 0
-  bar: {fileID: 876203646}
-  isSkip: 0
-  skipNum: 0
-  TmpCheck1: 0
   sortingLayerName: Text
   orderInLayer: 6
 --- !u!114 &1130843001
@@ -36503,6 +36503,8 @@ MonoBehaviour:
   bgmVolume: 0.2
   sfxClips:
   - {fileID: 8300000, guid: d0afbacbb88935742af81d3fd591b023, type: 3}
+  - {fileID: 8300000, guid: af2b7c7565296614483ba9f7a962b2e0, type: 3}
+  - {fileID: 8300000, guid: 7821f18511ccad84e86a53a46ca2abe0, type: 3}
   sfxVolume: 1
   channels: 16
 --- !u!1 &1784716579
