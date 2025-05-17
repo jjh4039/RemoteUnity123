@@ -94,6 +94,7 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator FourthStep()
     {
+        if (GameManager.Instance.player.isFocus == true) { GameManager.Instance.player.Focus(false); GameManager.Instance.player.ResetFruit(); }
         introduceText.rectTransform.anchoredPosition = new Vector2(-1255.554f, -720.26f);
         StartCoroutine(Say(13));
         yield return new WaitForSeconds(0f);
@@ -101,6 +102,7 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator FifthStep()
     {
+        if (GameManager.Instance.player.isFocus == true) { GameManager.Instance.player.Focus(false); GameManager.Instance.player.ResetFruit(); }
         introduceText.rectTransform.anchoredPosition = new Vector2(-1242.355f, -720.26f);
         StartCoroutine(Say(24));
         yield return new WaitForSeconds(0f);
@@ -116,6 +118,7 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator OneMore()
     {
+        if (GameManager.Instance.player.isFocus == true) { GameManager.Instance.player.Focus(false); GameManager.Instance.player.ResetFruit(); }
         introduceText.rectTransform.anchoredPosition = new Vector2(-1225.45f, -718.35f);
         StartCoroutine(Say(35));
         SpawnManager.instance.deathCount = 3;
@@ -124,6 +127,7 @@ public class IntroduceTextManager : MonoBehaviour
 
     IEnumerator HighJump()
     {
+        if (GameManager.Instance.player.isFocus == true) { GameManager.Instance.player.Focus(false); GameManager.Instance.player.ResetFruit(); }
         introduceText.rectTransform.anchoredPosition = new Vector2(-1204.3f, -718.35f);
         StartCoroutine(Say(37));
         yield return new WaitForSeconds(0f);
@@ -171,7 +175,7 @@ public class IntroduceTextManager : MonoBehaviour
         StartCoroutine(AlphaOn());
         introduceText.text = "";
         isSkip = false;
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Typing);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Typing, 0);
 
         if (TextIndex == 15) { Time.timeScale = 1f; Time.fixedDeltaTime = 0.02f * Time.timeScale;} // 튜토리얼 슬로우모션 제거
 

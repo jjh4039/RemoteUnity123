@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum Sfx { Typing }
+    public enum Sfx { Typing, Ready, Use }
 
     void Awake()
     {
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
         }
     }
     
-    public void PlaySfx(Sfx sfx)
+    public void PlaySfx(Sfx sfx, int detail)
     {
         for (int index=0; index < sfxPlayers.Length; index++)
         {
@@ -69,6 +69,18 @@ public class AudioManager : MonoBehaviour
                 case Sfx.Typing:
                     sfxPlayers[loopIndex].pitch = Random.Range(1f, 1.2f);
                     sfxPlayers[loopIndex].loop = true;
+                    break;
+                case Sfx.Ready:
+                    if (detail == 1)
+                    {
+                        sfxPlayers[loopIndex].pitch = 1.2f;
+                        sfxPlayers[loopIndex].loop = false;
+                    }
+                    else if (detail == 2)
+                    {
+                        sfxPlayers[loopIndex].pitch = 1.3f;
+                        sfxPlayers[loopIndex].loop = false;
+                    }
                     break;
             }
             break;

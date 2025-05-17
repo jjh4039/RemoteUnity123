@@ -162,10 +162,12 @@ public class Player : MonoBehaviour
                     {
                         case 1:
                             GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 0.65f, 0.62f, 1f);
+                            AudioManager.instance.PlaySfx(AudioManager.Sfx.Ready, 1); 
                             recentReadyFruit = 1;
                             break;
                         case 2:
                             GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 1f, 0.71f, 1f);
+                            AudioManager.instance.PlaySfx(AudioManager.Sfx.Ready, 2);
                             recentReadyFruit = 2;
                             break;
                     }
@@ -184,7 +186,6 @@ public class Player : MonoBehaviour
     {
         Focus(false); // 발현 시 포커스 해제
         isReadyFruit = false;
-
 
         for (int i = 0; i <= readyFruits.Length - 1; i++)
         {
@@ -249,6 +250,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        ResetFruit();
         isLive = false;
         SpawnManager.instance.deathCount++;
         gameObject.SetActive(false);
@@ -263,5 +265,15 @@ public class Player : MonoBehaviour
     public void EmotionThink()
     {
         GameObject.Instantiate(emotionBox[1], new Vector3(transform.position.x, transform.position.y + 0.9f, 0), Quaternion.identity);
+    }
+
+    // 과일 슬롯 초기화
+    public void ResetFruit()
+    {
+        for (int i = 0; i < readyFruits.Length; i++)
+        {
+            readyFruits[i] = 0;
+            GameManager.Instance.bar.BarsColor[i].color = Color.white;
+        }
     }
 }

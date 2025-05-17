@@ -8,9 +8,11 @@ public class IntroducePosition : MonoBehaviour
 
     public void introduceStart()
     {
+
         switch (introduceID)
         {
             case 0:
+                if (GameManager.Instance.player.isFocus == true) { GameManager.Instance.player.Focus(false); }
                 GameManager.Instance.player.Die();
                 break;
             case 1:
