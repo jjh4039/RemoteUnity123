@@ -257,6 +257,7 @@ public class Player : MonoBehaviour
         isLive = false;
         SpawnManager.instance.deathCount++;
         gameObject.SetActive(false);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Die, 0);
         GameManager.Instance.gameOver.gameOverUi.SetActive(true);
     }
 

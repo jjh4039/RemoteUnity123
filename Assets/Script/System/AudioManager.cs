@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum Sfx { Typing, Ready, Use, Error, CheckPoint }
+    public enum Sfx { Typing, Ready, Use, Error, CheckPoint, Eat, Die}
 
     void Awake()
     {
@@ -103,6 +103,16 @@ public class AudioManager : MonoBehaviour
                 case Sfx.CheckPoint:
                     sfxPlayers[loopIndex].volume = 0.4f;
                     sfxPlayers[loopIndex].pitch = 1.9f;
+                    sfxPlayers[loopIndex].loop = false;
+                    break;
+                case Sfx.Eat:
+                    sfxPlayers[loopIndex].volume = 1f;
+                    sfxPlayers[loopIndex].pitch = 1.8f;
+                    sfxPlayers[loopIndex].loop = false;
+                    break;
+                case Sfx.Die:
+                    sfxPlayers[loopIndex].volume = 0.3f;
+                    sfxPlayers[loopIndex].pitch = 2f;
                     sfxPlayers[loopIndex].loop = false;
                     break;
             }

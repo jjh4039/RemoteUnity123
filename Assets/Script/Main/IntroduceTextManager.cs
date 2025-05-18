@@ -21,11 +21,13 @@ public class IntroduceTextManager : MonoBehaviour
     [Header("Field")]
     public string[] texts; // 인스펙터에서 텍스트 수 관리
     public float textSpeed; // 텍스트 속도
+    public bool isBlack; // 텍스트 색상 변경 여부
 
     private void Start()
     { 
         GameManager.Instance.player.isMove = false;
         TextSet(); // String Setting
+        isBlack = true;
         skipNum = 0;
         TmpCheck1 = -1;
         StartCoroutine(FristStep()); // 튜토리얼 시작
@@ -39,7 +41,7 @@ public class IntroduceTextManager : MonoBehaviour
         }
         else
         {
-            introduceText.color = introduceText.color = Color.black;
+            if (isBlack == true) introduceText.color = introduceText.color = Color.black;
         } 
 
         if (Input.GetKeyDown(KeyCode.Space) && isSkip == true)
@@ -168,8 +170,8 @@ public class IntroduceTextManager : MonoBehaviour
         introduceText.text = "";
         isSkip = false;
         
-
         if (TextIndex == 15) { Time.timeScale = 1f; Time.fixedDeltaTime = 0.02f * Time.timeScale;} // 튜토리얼 슬로우모션 제거
+        if (TextIndex == 17) { isBlack = true; introduceText.color = Color.black; }
 
         switch (TextIndex) // 텍스트 박스 관리
         {
@@ -185,10 +187,10 @@ public class IntroduceTextManager : MonoBehaviour
 
         switch (TextIndex) // 퀘스트 관리
         {
-            case 2 or 6 or 12 or 14 or 16 or 23 or 29 or 34 or 36 or 40: // 퀘스트를 주는 번호
+            case 2 or 6 or 12 or 14 or 23 or 29 or 34 or 36 or 40: // 퀘스트를 주는 번호
                 isQuestClear = false;
                 break;
-            case 15 or 17 or 24 or 30 or 35 or 37: // 퀘스트 클리어 따로 없이 그냥 다음으로 넘어가는 번호
+            case 15 or 24 or 30 or 35 or 37: // 퀘스트 클리어 따로 없이 그냥 다음으로 넘어가는 번호
                 isQuestClear = true;
                 GameManager.Instance.player.isFruitStop = true;
                 break;
@@ -370,6 +372,24 @@ public class IntroduceTextManager : MonoBehaviour
                     }
                 }
                 break;
+            case 16:
+                for (int i = 0; i < texts[TextIndex].Length; i++)
+                {
+                    switch (i)
+                    {
+                        case 8:
+                            isBlack = false;
+                            yield return new WaitForSeconds(textSpeed);
+                            introduceText.text += texts[TextIndex][i];
+                            introduceText.color = Color.white;
+                            break;
+                        default:
+                            yield return new WaitForSeconds(textSpeed);
+                            introduceText.text += texts[TextIndex][i];
+                            break;
+                    }
+                }
+                break;
             case 18:
                 for (int i = 0; i < texts[TextIndex].Length; i++)
                 {
@@ -403,21 +423,17 @@ public class IntroduceTextManager : MonoBehaviour
                 {
                     switch (i)
                     {
-                        case 6:
+                        case 8:
                             yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "1. 항상 <color=#ff1212>모</color>";
-                            break;
-                        case 7: 
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "1. 항상 <color=#ff1212>모든</color>";
+                            introduceText.text = "1. 발현에는\n<color=#ff1212>쿨</color>";
                             break;
                         case 9:
                             yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "1. 항상 <color=#ff1212>모든 칸</color>";
+                            introduceText.text = "1. 발현에는\n<color=#ff1212>쿨타</color>";
                             break;
                         case 10:
                             yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "1. 항상 <color=#ff1212>모든 칸을</color>";
+                            introduceText.text = "1. 발현에는\n<color=#ff1212>쿨타임</color>";
                             break;
                         default:
                             yield return new WaitForSeconds(textSpeed);
@@ -426,50 +442,66 @@ public class IntroduceTextManager : MonoBehaviour
                     }
                 }
                 break;
-            case 21:
-                for (int i = 0; i < texts[TextIndex].Length; i++)
+        case 21:
+            for (int i = 0; i < texts[TextIndex].Length; i++)
+            {
+                switch (i)
                 {
-                    switch (i)
-                    {
-                        case 3:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "2. <color=#ff1212>같</color>";
-                            break;
-                        case 4:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "2. <color=#ff1212>같은</color>";
-                            break;
-                        case 6:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "2. <color=#ff1212>같은 과</color>";
-                            break;
-                        case 7:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "2. <color=#ff1212>같은 과일</color>";
-                            break;
-                        case 9:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "2. <color=#ff1212>같은 과일 연</color>";
-                            break;
-                        case 10:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "2. <color=#ff1212>같은 과일 연속</color>";
-                            break;
-                        case 11:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "2. <color=#ff1212>같은 과일 연속발</color>";
-                            break;
-                        case 12:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text = "2. <color=#ff1212>같은 과일 연속발현</color>";
-                            break;
-                        default:
-                            yield return new WaitForSeconds(textSpeed);
-                            introduceText.text += texts[TextIndex][i];
-                            break;
-                    }
+                    case 10:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연</color>";
+                        break;
+                    case 11:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속</color>";
+                        break;
+                    case 12:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으</color>";
+                        break;
+                    case 13:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로</color>";
+                        break;
+                    case 15:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로\n사</color>";
+                        break;
+                    case 16:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로\n사용</color>";
+                        break;
+                    case 17:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로\n사용하</color>";
+                        break;
+                    case 18:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로\n사용하지</color>";
+                        break;
+                    case 20:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로\n사용하지 못</color>";
+                        break;
+                    case 21:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로\n사용하지 못한</color>";
+                        break;
+                    case 22:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로\n사용하지 못한다</color>";
+                        break;
+                    case 23:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text = "2. 같은 과일은 <color=#ff1212>연속으로\n사용하지 못한다.</color>";
+                        break;
+                    default:
+                        yield return new WaitForSeconds(textSpeed);
+                        introduceText.text += texts[TextIndex][i];
+                        break;
                 }
-                break;
+            }
+            break;
             case 24:
                 for (int i = 0; i < texts[TextIndex].Length; i++)
                 {
@@ -596,17 +628,17 @@ public class IntroduceTextManager : MonoBehaviour
         texts[11] = "Space Bar를 눌러\n능력을 발현할 수 있어요";
         texts[12] = "이해하지 못했어도 좋아요,\n저 앞에서 한번 해보죠";
         texts[13] = "바로 갈게요, 사과는\n『Q』로 준비할 수 있어요";
-        texts[14] = "『Q』를 눌러\n집중 모드로 돌입하기";
+        texts[14] = "『Q』를 눌러\n[사과] 준비하기";
         texts[15] = "잘했어요,\n이번에는 발현이에요";
         texts[16] = "『Space Bar』를 눌러\n능력 발현하기";
         texts[17] = "정확해요,\n이게 전부에요";
         texts[18] = "준비와 발현의 반복.";
         texts[19] = "하지만 2가지\n주의사항이 있어요";
-        texts[20] = "1. 항상 모든 칸을\n준비/발현해야만 전환된다";
-        texts[21] = "2. 같은 과일 연속발현에는\n약간의 쿨타임이 존재한다";
+        texts[20] = "1. 발현에는\n쿨타임이 존재한다.";
+        texts[21] = "2. 같은 과일은 연속으로\n사용하지 못한다.";
         texts[22] = "슬슬 끝나가네요,\n이젠 여러 과일을 다뤄보죠";
         texts[23] = "마음껏 연습하고\n오른쪽으로 이동하기";
-        texts[24] = "설명을 줄일게요,\n바나나는 『W』로 준비하고";
+        texts[24] = "설명을 줄일게요,\n바나나는 『W』로 준비하고"; 
         texts[25] = "발현 시 앞으로\n빠르게 돌진해요";
         texts[26] = "사과와 섞어서\n준비 및 발현시키면...";
         texts[27] = "더욱 빠르게 또는\n더욱 높이 뛸 수 있겠죠?";
