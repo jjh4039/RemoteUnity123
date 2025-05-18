@@ -42,8 +42,6 @@ public class CheckPoint : MonoBehaviour
             StartCoroutine(FlagOut());
             StartCoroutine(TextFlow());
             SpawnManager.instance.spawnPoint = transform.position;
-
-
         // 마지막 체크포인트 문구
         switch(checkPointIndex)
             {
@@ -66,6 +64,7 @@ public class CheckPoint : MonoBehaviour
 
     IEnumerator TextFlow()
     {
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.CheckPoint, 0);
         spawnText.transform.position = new Vector3(GameManager.Instance.player.transform.position.x, GameManager.Instance.player.transform.position.y + 0.2f, 0);
         textAlpha.alpha = 1;
         for (int i = 0; i < 100; i++)

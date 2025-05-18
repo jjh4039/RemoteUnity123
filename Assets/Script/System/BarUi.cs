@@ -60,7 +60,7 @@ public class BarUi : MonoBehaviour
 
     IEnumerator FoucsEffectOff()
     {
-        for (float i = 40f; i > 0f; i -= 0.3f)
+        for (float i = focus.transform.localScale.x; i > 0f; i -= 0.5f)
         {
             focus.transform.position = GameManager.Instance.player.transform.position;
             focus.transform.localScale = new Vector3(i, i, 1);
@@ -80,11 +80,11 @@ public class BarUi : MonoBehaviour
                 break;
             case SettingText.ready:
                 mainText.text = "사용할 과일을 입력하세요!";
-                mainTextOutline.effectColor = new Color(0.15f, 1f, 0f, 0.5f);
+                mainTextOutline.effectColor = new Color(0.65f, 1f, 0.58f, 0.5f);
                 break;
             case SettingText.full:
                 mainText.text = "모든 칸이 준비되었습니다!";
-                mainTextOutline.effectColor = new Color(0.51f, 0.67f, 1f, 0.5f);
+                mainTextOutline.effectColor = new Color(0.82f, 0.88f, 1f, 0.5f);
                 break;
             case SettingText.cooldown:
                 isCooldown = true;

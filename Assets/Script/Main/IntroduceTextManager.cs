@@ -21,8 +21,6 @@ public class IntroduceTextManager : MonoBehaviour
     [Header("Field")]
     public string[] texts; // 인스펙터에서 텍스트 수 관리
     public float textSpeed; // 텍스트 속도
-    public string sortingLayerName = "Text"; // UI 정렬 레이어
-    public int orderInLayer = 15; // UI 정렬 레이어 순서
 
     private void Start()
     { 
@@ -31,13 +29,6 @@ public class IntroduceTextManager : MonoBehaviour
         skipNum = 0;
         TmpCheck1 = -1;
         StartCoroutine(FristStep()); // 튜토리얼 시작
-
-        Renderer textRen = GameObject.Find("IntroduceText").GetComponent<SpriteRenderer>();
-        if (textRen != null)
-        {
-            textRen.sortingLayerName = sortingLayerName;
-            textRen.sortingOrder = orderInLayer;
-        }
     }
 
     public void Update()
@@ -173,9 +164,10 @@ public class IntroduceTextManager : MonoBehaviour
     {
         skipGuide.SetActive(false);
         StartCoroutine(AlphaOn());
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Typing, 0);
         introduceText.text = "";
         isSkip = false;
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Typing, 0);
+        
 
         if (TextIndex == 15) { Time.timeScale = 1f; Time.fixedDeltaTime = 0.02f * Time.timeScale;} // 튜토리얼 슬로우모션 제거
 

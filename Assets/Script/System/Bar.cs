@@ -59,6 +59,9 @@ public class Bar : MonoBehaviour
         BarCoolDownTime = 2.2f;
         GameManager.Instance.barUi.SetMainText(BarUi.SettingText.cooldown); // 바 UI 텍스트 변경
 
+        GameManager.Instance.player.WhiteResetFruit(); // 색 초기화
+        MainBar.color = Color.white;
+
         yield return new WaitForSeconds(0.02f);
         BarsColor[0].gameObject.SetActive(false);
         BarsColor[1].gameObject.SetActive(false);
@@ -90,18 +93,16 @@ public class Bar : MonoBehaviour
     }
 
     // 사용가능 색으로 변하기 
-    public void UseColorChange()
+    public void UseColorChange(int index, int colorId)
     {
-        for (int i = 0; i < BarsColor.Length; i++)
+        switch (colorId)
         {
-            if(BarsColor[i].color == new Color(1f, 0.65f, 0.62f, 1f))
-            {
-                BarsColor[i].color = new Color(1f, 0.3f, 0.24f, 1f);
-            }
-            else if(BarsColor[i].color == new Color(1f, 1f, 0.71f, 1f))
-            {
-                BarsColor[i].color = new Color(1f, 1f, 0f, 1f);
-            }
+            case 1:
+                BarsColor[index].color = new Color(1f, 0.3f, 0.24f, 1f);
+                break;
+            case 2:
+                BarsColor[index].color = new Color(1f, 0.93f, 0f, 1f);
+                break;
         }
     }
 }

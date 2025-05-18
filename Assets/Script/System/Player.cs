@@ -138,7 +138,6 @@ public class Player : MonoBehaviour
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             recentReadyFruit = 0; // 연속방지변수 초기화
-            GameManager.Instance.bar.UseColorChange(); // 발현 바 색 조정
             GameManager.Instance.barUi.SetMainText(BarUi.SettingText.none); // 발현 UI 텍스트 변경
         }
     }
@@ -147,12 +146,13 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < readyFruits.Length; i++)
         {
-            if (fruitId == recentReadyFruit) // 같은 과일 준비 불가
+            if (fruitId == recentReadyFruit && readyFruits[readyFruits.Length - 1] == 0) // 같은 과일 준비 불가
             {
                 GameManager.Instance.barUi.StartCoroutine("Error"); // 바 UI 에러 텍스트 출력
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Error, 0);
             }
-            else 
-            { 
+            else
+            {
                 if (readyFruits[i] == 0)
                 {
                     if (i == 0) { Focus(true); } // 첫번째 과일 준비 시 자동 포커스 모드 시작
@@ -161,20 +161,19 @@ public class Player : MonoBehaviour
                     switch (fruitId)
                     {
                         case 1:
-                            GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 0.65f, 0.62f, 1f);
-                            AudioManager.instance.PlaySfx(AudioManager.Sfx.Ready, 1); 
+                            GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 0.65f, 0.62f, 0.85f);
+                            AudioManager.instance.PlaySfx(AudioManager.Sfx.Ready, 1);
                             recentReadyFruit = 1;
                             break;
                         case 2:
-                            GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 1f, 0.71f, 1f);
+                            GameManager.Instance.bar.BarsColor[i].color = new Color(1f, 1f, 0.7f, 0.85f);
                             AudioManager.instance.PlaySfx(AudioManager.Sfx.Ready, 2);
                             recentReadyFruit = 2;
                             break;
                     }
                     if (i == readyFruits.Length - 1) // 전부 채웠을 때 색바꾸기 & 발현하세요!
-                        {
-                            GameManager.Instance.bar.UseColorChange(); 
-                            GameManager.Instance.barUi.SetMainText(BarUi.SettingText.full); // 바 UI 텍스트 변경
+                    {
+                        GameManager.Instance.barUi.SetMainText(BarUi.SettingText.full); // 바 UI 텍스트 변경
                     }
                     break;
                 }
@@ -195,21 +194,25 @@ public class Player : MonoBehaviour
                     switch (readyFruits[i]) // 과일 번호
                     {
                         case 1:
-                            rigid.linearVelocityY = jumpPower;
+                            rigid.linearVelocityY = jumpPower;  
+                            AudioManager.instance.PlaySfx(AudioManager.Sfx.Use, 1);
                             break;
                         case 2:
                             StartCoroutine(Dash());
+                            AudioManager.instance.PlaySfx(AudioManager.Sfx.Use, 2);
                             break;
                     }
-                    GameManager.Instance.bar.BarsColor[i].color = Color.white;
+                    GameManager.Instance.bar.UseColorChange(i, readyFruits[i]); // 발현 색 변경
                     GameManager.Instance.fruitManager.FruitUseParticle(readyFruits[i]);
 
                     if (i == readyFruits.Length - 1) // 발현 종료 검증A : 마지막 칸 사용했으면 
                     {
+                        yield return new WaitForSeconds(0.3f);
                         GameManager.Instance.bar.StartCoroutine("BarReadying");
                     }
                     else if (readyFruits[i + 1] == 0) // 발현 종료 검증B : 다음이 마지막일때
-                    {  
+                    {
+                        yield return new WaitForSeconds(0.3f);
                         GameManager.Instance.bar.StartCoroutine("BarReadying");
                     }
 
@@ -267,13 +270,22 @@ public class Player : MonoBehaviour
         GameObject.Instantiate(emotionBox[1], new Vector3(transform.position.x, transform.position.y + 0.9f, 0), Quaternion.identity);
     }
 
-    // 과일 슬롯 초기화
+    // 과일 슬롯 전체 초기화
     public void ResetFruit()
     {
         for (int i = 0; i < readyFruits.Length; i++)
         {
             readyFruits[i] = 0;
             GameManager.Instance.bar.BarsColor[i].color = Color.white;
+        }
+    }
+
+    // 과일 슬롯 색만 흰색으로 초기화
+    public void WhiteResetFruit() 
+    {
+        for (int i = 0; i < readyFruits.Length; i++)
+        {
+            GameManager.Instance.bar.BarsColor[i].color = Color.white; // 발현 바 색 조정
         }
     }
 }

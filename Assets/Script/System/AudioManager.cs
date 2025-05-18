@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum Sfx { Typing, Ready, Use }
+    public enum Sfx { Typing, Ready, Use, Error, CheckPoint }
 
     void Awake()
     {
@@ -42,7 +42,6 @@ public class AudioManager : MonoBehaviour
         GameObject sfxObject = new GameObject("SfxPlayer");
         sfxObject.transform.parent = transform;
         sfxPlayers = new AudioSource[channels];
-
         for (int index = 0; index < sfxPlayers.Length; index++){
             sfxPlayers[index] = sfxObject.AddComponent<AudioSource>();
             sfxPlayers[index].playOnAwake = false;
@@ -56,14 +55,14 @@ public class AudioManager : MonoBehaviour
         {
             int loopIndex = (index + channelIndex) % sfxPlayers.Length;
 
-            if (sfxPlayers[index].isPlaying) { 
+            if (sfxPlayers[loopIndex].isPlaying) { 
                 continue;
             }
 
             channelIndex = loopIndex;
             sfxPlayers[loopIndex].clip = sfxClips[(int)sfx];
-            sfxPlayers[loopIndex].Play();
-            
+            sfxPlayers[loopIndex].volume = 1f;
+
             switch (sfx) // 예외처리
             {
                 case Sfx.Typing:
@@ -71,6 +70,7 @@ public class AudioManager : MonoBehaviour
                     sfxPlayers[loopIndex].loop = true;
                     break;
                 case Sfx.Ready:
+                    sfxPlayers[loopIndex].volume = 0.9f;
                     if (detail == 1)
                     {
                         sfxPlayers[loopIndex].pitch = 1.2f;
@@ -82,7 +82,31 @@ public class AudioManager : MonoBehaviour
                         sfxPlayers[loopIndex].loop = false;
                     }
                     break;
+                case Sfx.Use:
+                    sfxPlayers[loopIndex].volume = 0.7f;
+                    if (detail == 1)
+                    {
+                        sfxPlayers[loopIndex].pitch = 1.2f;
+                        sfxPlayers[loopIndex].loop = false;
+                    }
+                    else if (detail == 2)
+                    {
+                        sfxPlayers[loopIndex].pitch = 1.3f;
+                        sfxPlayers[loopIndex].loop = false;
+                    }
+                    break;
+                case Sfx.Error:
+                    sfxPlayers[loopIndex].volume = 0.4f;
+                    sfxPlayers[loopIndex].pitch = 1.3f;
+                    sfxPlayers[loopIndex].loop = false;
+                    break;
+                case Sfx.CheckPoint:
+                    sfxPlayers[loopIndex].volume = 0.4f;
+                    sfxPlayers[loopIndex].pitch = 1.9f;
+                    sfxPlayers[loopIndex].loop = false;
+                    break;
             }
+            sfxPlayers[loopIndex].Play();
             break;
         }
     }
@@ -91,11 +115,8 @@ public class AudioManager : MonoBehaviour
     {
         for (int index = 0; index < sfxPlayers.Length; index++)
         {
-            int loopIndex = (index + channelIndex) % sfxPlayers.Length;
-
-            if (sfxPlayers[index].isPlaying)
+            if (sfxPlayers[index].isPlaying && sfxPlayers[index].clip == sfxClips[(int)sfx])
             {
-                if (sfxPlayers[index].clip == sfxClips[(int)sfx])
                 sfxPlayers[index].Stop();
                 break;
             }
