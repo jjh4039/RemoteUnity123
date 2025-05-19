@@ -25,6 +25,7 @@ public class LoadingSceneManager : MonoBehaviour
         // 시간 속도 복구 & 페이드 인
         Time.timeScale = 1;
         StartCoroutine(PadeIn());
+        RandomTipset(); // 랜덤 팁 설정
 
         // 이동 마을 설정 
         switch (loadIndex)
@@ -60,6 +61,23 @@ public class LoadingSceneManager : MonoBehaviour
 
         // 로딩 텍스트 관리
         loadingText.text = "Loading... " + (loadingSlider.value * 100).ToString("0.00") + "%";
+    }
+
+    void RandomTipset()
+    {
+        int randomTip = Random.Range(0, 3);
+        switch (randomTip)
+        {
+            case 0:
+                tipText.text = "TIP : " + "발현 사이에는 2.5초의 쿨타임이 존재합니다.";
+                break;
+            case 1:
+                tipText.text = "TIP : " + "과일은 총 4가지가 있습니다.";
+                break;
+            case 2:
+                tipText.text = "TIP : " + "발현 준비 단계에서는 시간이 천천히 흐릅니다.";
+                break;
+        }
     }
 
     public IEnumerator PadeIn()

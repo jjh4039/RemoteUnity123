@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         isCut = false;
         readyFruits = new int[3]; // 과일 슬롯 개수 (현재 3)
         for (int k = 0; k < readyFruits.Length; k++) { readyFruits[k] = 0; }
-        rigid = GetComponent<Rigidbody2D>();
+            rigid = GetComponent<Rigidbody2D>();
         colider = GetComponent<BoxCollider2D>();
         spriteRen = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
