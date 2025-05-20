@@ -256,6 +256,7 @@ public class Player : MonoBehaviour
     {
         isMove = true;
         isFruitStop = false;
+        isReadyFruit = true; // 과일 준비 가능 상태
     }
 
     public void Die()
