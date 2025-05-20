@@ -12,6 +12,7 @@ public class StageManager : MonoBehaviour
 
     [Header("Components")]
     public CanvasGroup StageTitle;
+    public GameObject bar;
 
 
     [Header("Field")]
@@ -36,6 +37,7 @@ public class StageManager : MonoBehaviour
 
     public IEnumerator TitleOn(StageName ST)
     {
+        GameManager.Instance.player.isFruitStop = true;
         yield return new WaitForSeconds(0.3f);
 
         for (int i = 0; i < 100; i++)
@@ -44,7 +46,7 @@ public class StageManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
 
         for (int i = 0; i < 100; i++)
@@ -52,5 +54,7 @@ public class StageManager : MonoBehaviour
             StageTitle.alpha -= 0.01f;
             yield return new WaitForSeconds(0.01f);
         }
+        GameManager.Instance.player.isFruitStop = false;
+        bar.SetActive(true);
     } 
 }

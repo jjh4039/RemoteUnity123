@@ -158,18 +158,21 @@ MonoBehaviour:
   isGround: 0
   fruits: {fileID: 0}
   iPos: {fileID: 0}
+  emotionBox: []
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   speed: 7
   jumpPower: 7
   readyFruits: 
-  recentUseFruit: 0
+  recentReadyFruit: 0
   isDash: 0
   isMove: 1
+  isCut: 0
   isUseFruit: 0
   isReadyFruit: 0
   isFruitStop: 0
+  isFocus: 0
   isLive: 0
 --- !u!50 &2857541952811358491
 Rigidbody2D:
@@ -195,7 +198,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &6202079191152541271

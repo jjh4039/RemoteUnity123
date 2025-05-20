@@ -18,12 +18,6 @@ public class FruitManager : MonoBehaviour
     public bool isEatBanana;
     public int EatIndex;
 
-    void Awake()
-    {
-        isEatApple = false;
-        isEatBanana = false;
-    }
-
     public void FruitUseParticle(int FruitIndex)
     {
         FruitParticle[FruitIndex].transform.position = GameManager.Instance.player.transform.position;
