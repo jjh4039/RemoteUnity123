@@ -104,7 +104,7 @@ public class KoreanTyperDemo_Auto : MonoBehaviour {
         string[] strings = new string[5]{ "신선한 과일들이 가득 쌓여있다.",
                                           "방금까지 누군가 앉아 있던 곳 같다...",
                                           "    시련의 나무 >>\n              << 씨앗 마을\n\n    ...흔한 표지판이다.",
-                                          "< 모집 공고 >\n마을을 수..&!@.\n\n포스터가 찢어져 있어 읽기 힘들어 보인다...",
+                                          "< 모집 공고 >\n마을을 수..&!@.\n\n포스터가 찢어져 있어 읽기 힘들다...",
                                           "정중앙에 화살이 박힌 과녁...\n시간이 멈춘 듯 낡고 해져있다."};
 
         for (int i = 0; i < TestTexts.Length; i++) // 초기화
