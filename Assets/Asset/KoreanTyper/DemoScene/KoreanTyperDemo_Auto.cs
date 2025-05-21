@@ -22,7 +22,6 @@ public class KoreanTyperDemo_Auto : MonoBehaviour {
     void Start()
     {
         StartCoroutine(FlowArrow());
-        // StartCoroutine(TypingNpc(0, true)); // 테스트용 NPC 대화 시작
     }
 
     void Update()
@@ -41,13 +40,24 @@ public class KoreanTyperDemo_Auto : MonoBehaviour {
             isSpace = false;
             switch(nowTextIndex)
             {
-                case 0:
-                    StartCoroutine(TypingNpc(1, true));
+                default:
+                    StartCoroutine(TypingNpc(nowTextIndex + 1, true));
                     break;
                 case 1:
                     StartCoroutine(TypingNpc(0, false));
                     break;
-            }
+                case 5 or 8 or 12:
+                    StartCoroutine(TypingNpc(3, false));
+                    break;
+                case 15 or 18 or 21 or 22:
+                    TextCG.alpha = 0f;
+                    GameManager.Instance.player.MoveStart();
+                    BackGround.backGroundMoveStop = false;
+                    Dialogues.isDialogue = false;
+                    Dialogues.isNpcFirst = false;
+                    isSkip = false;// 테스트용 NPC 대화 시작
+                    break;
+            }   
         }
 
         if (isChoice == true)
@@ -65,7 +75,7 @@ public class KoreanTyperDemo_Auto : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isChoice == true) // NPC 대화 진행
+        if (Input.GetKeyDown(KeyCode.Space) && isChoice == true) // 선택
         {
             isChoice = false;
             switch (nowTextIndex)
@@ -77,10 +87,24 @@ public class KoreanTyperDemo_Auto : MonoBehaviour {
                             StartCoroutine(TypingNpc(2, true));
                             break;
                         case 1: // 여긴 어디죠 -> 
-                            StartCoroutine(TypingNpc(3, true));
+                            StartCoroutine(TypingNpc(6, true));
                             break;
                         case 2: // 그동안 들렸던 목소리의 정체 -> 
-                            StartCoroutine(TypingNpc(4, true));
+                            StartCoroutine(TypingNpc(9, true));
+                            break;
+                    }
+                    break;
+                case 3:
+                    switch (myChoiceIndex)
+                    {
+                        case 0: // 특이한 일이 뭐야? -> 
+                            StartCoroutine(TypingNpc(13, true)); // 수정
+                            break;
+                        case 1: // 과일이라니? -> 
+                            StartCoroutine(TypingNpc(16, true)); // 수정
+                            break;
+                        case 2: // 마을에 대해 자세히 물어본다 ->
+                            StartCoroutine(TypingNpc(19, true)); // 수정
                             break;
                     }
                     break;
@@ -96,16 +120,19 @@ public class KoreanTyperDemo_Auto : MonoBehaviour {
     public IEnumerator TypingText(int textIndex) {
 
         ArrowCG.alpha = 0f;
+        ChoiceArrowCG.alpha = 0f;
         TextCG.alpha = 1f;
+        NpcCG.alpha = 0f;
         GameManager.Instance.player.MoveStop();
         BackGround.backGroundMoveStop = true;
 
         isSkip = false;
-        string[] strings = new string[5]{ "신선한 과일들이 가득 쌓여있다.",
+        string[] strings = new string[6]{ "신선한 과일들이 가득 쌓여있다.",
                                           "방금까지 누군가 앉아 있던 곳 같다...",
                                           "    시련의 나무 >>\n              << 씨앗 마을\n\n    ...흔한 표지판이다.",
                                           "< 모집 공고 >\n마을을 수..&!@.\n\n포스터가 찢어져 있어 읽기 힘들다...",
-                                          "정중앙에 화살이 박힌 과녁...\n시간이 멈춘 듯 낡고 해져있다."};
+                                          "정중앙에 화살이 박힌 과녁..\n시간이 멈춘 듯 낡고 해져있다.",
+                                          "두 개의 해바라기가 태양을 향해 고개를 들고 있다.\n나란히 서 있는 모습이 안정감을 주는 듯 하다.."};
 
         for (int i = 0; i < TestTexts.Length; i++) // 초기화
         {
@@ -135,17 +162,38 @@ public class KoreanTyperDemo_Auto : MonoBehaviour {
         
         isSpace = false;
         isSkip = false;
-        string[] NpcStrings = new string[5]{ "처음 보는 얼굴인걸.",
+        string[] NpcStrings = new string[]{ "처음 보는 얼굴인걸.",
                                           "이 마을에는 무슨 일이지?",
-                                          "아무것도 모르겠다라..\n어디서 왔는지도 모른다 이건가",
-                                          "이 곳은 씨앗마을이다.\n너 같은 이방인",
-                                          "무슨 목소리를 말하는거지?"};
+                                          "아무 것도 모르겠다라... \n요즘 특이한 일이 많이 생기는군.", 
+                                          "이 곳은 씨앗마을이다.\n한때는 사람으로 북적대는 곳이었지만..", 
+                                          "지금은 과일... 아니 특이한 일이 생겨서 말이야.", 
+                                          "용건없이 온거라면 이만 가봐.", // 5
+                                          "찾아온 건 아닌가 보군.. \n이 곳은 씨앗마을이다.", 
+                                          "지금은 과일... 아니 마을에 특이한 일이 생겨서",
+                                          "외부자가 있기엔 위험하니\n용건이 없다면 이만 가봐.", // 8
+                                          "목소리라.. 잘 모르겠는걸.", 
+                                          "하지만 해줄 말이 있다.\n지금은 이 마을을 떠나야 해.",
+                                          "지금은 과일... 아니 마을에 특이한 일이 생겨서", 
+                                          "외부자가 있기엔 위험하다.\n미안하지만 이만 가봐.", // 12
+                                          "궁금한 것도 많군.",
+                                          "최근에 마을을 지키던 나무에\n큰 이상이 생겨서 말이야.",
+                                          "이 이상은 궁금해하지 말고\n지금은 잠시 이 마을을 떠나주겠나.", 
+                                          "과일이라.. 내가 말실수를 했군.",
+                                          "최근에 마을을 지키던 나무에\n큰 이상이 생겨서 말이야.",
+                                          "이 이상은 궁금해하지 말고\n지금은 잠시 이 마을을 떠나주겠나.",
+                                          "씨앗 마을이라.. \n예전이었다면 마을을 돌아다니며\n천천히 소개해 줬겠지만...",
+                                          "지금은 마을을 지키던 나무에\n큰 이상이 생겨서 말이야.",
+                                          "이 이상은 궁금해하지 말고\n지금은 잠시 이 마을을 떠나주겠나.",
+                                          "아직도 마을에 있는 건가?\n지금 이 곳은 위험해."
+        };
 
-        string[] PlayerStrings = new string[5]{ "아무것도 모르겠다고 답한다.",
+        string[] PlayerStrings = new string[6]{ "아무것도 모르겠다고 답한다.",
                                           "이 곳이 어디인지 묻는다.",
                                           "전까지 들렸던 목소리에 대해 묻는다.",
-                                          "",
-                                          ""};
+                                          "'특이한 일'에 대해 물어본다",
+                                          "'과일'에 대해 물어본다",
+                                          "'씨앗 마을'에 대해 물어본다"
+        };
 
         for (int i = 0; i < TestTexts.Length; i++) // 초기화
         {

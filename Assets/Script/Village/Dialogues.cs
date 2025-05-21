@@ -13,10 +13,13 @@ public class Dialogues : MonoBehaviour
         Signs,
         board,
         target,
-        Npc
+        Npc,
+        Sunflower,
+        Tree,
     }
 
     static public bool isDialogue;
+    static public bool isNpcFirst = true;
     public bool isStayPlayer;
     public DialoguePlace myPlace;
     public GameObject PressF;
@@ -56,7 +59,14 @@ public class Dialogues : MonoBehaviour
                     DialogueScript.StartCoroutine(DialogueScript.TypingText(4));
                     break;
                 case DialoguePlace.Npc:
-                    DialogueScript.StartCoroutine(DialogueScript.TypingNpc(0, true));
+                    if(isNpcFirst == true) DialogueScript.StartCoroutine(DialogueScript.TypingNpc(0, true));
+                    else DialogueScript.StartCoroutine(DialogueScript.TypingNpc(22, true));
+                    break;
+                case DialoguePlace.Sunflower:
+                    DialogueScript.StartCoroutine(DialogueScript.TypingText(5));
+                    break;
+                case DialoguePlace.Tree:
+                    DialogueScript.StartCoroutine(DialogueScript.TypingText(5)); // Å×½ºÆ®
                     break;
             }
         }
