@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum Sfx { Typing, Ready, Use, Error, CheckPoint, Eat, Die}
+    public enum Sfx { Typing, Ready, Use, Error, CheckPoint, Eat, Die, Npc}
 
     void Awake()
     {
@@ -114,6 +114,10 @@ public class AudioManager : MonoBehaviour
                     sfxPlayers[loopIndex].volume = 0.3f;
                     sfxPlayers[loopIndex].pitch = 2f;
                     sfxPlayers[loopIndex].loop = false;
+                    break;
+                case Sfx.Npc:
+                    sfxPlayers[loopIndex].pitch = Random.Range(0.4f, 0.5f);
+                    sfxPlayers[loopIndex].loop = true;
                     break;
             }
             sfxPlayers[loopIndex].Play();

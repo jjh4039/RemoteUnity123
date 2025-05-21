@@ -38,6 +38,10 @@ public class MainCamera : MonoBehaviour
                 {
                     transform.position = new Vector3(-9.4f, -0.1f, -10);
                 }
+                if (transform.position.x > 17.47)
+                {
+                    transform.position = new Vector3(17.47f, -0.1f, -10);
+                }
                 break;
         }
 

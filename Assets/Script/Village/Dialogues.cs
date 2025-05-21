@@ -11,7 +11,9 @@ public class Dialogues : MonoBehaviour
         FoodStail,
         Table,
         Signs,
-        board
+        board,
+        target,
+        Npc
     }
 
     static public bool isDialogue;
@@ -49,6 +51,12 @@ public class Dialogues : MonoBehaviour
                     break;
                 case DialoguePlace.board:
                     DialogueScript.StartCoroutine(DialogueScript.TypingText(3));
+                    break;
+                case DialoguePlace.target:
+                    DialogueScript.StartCoroutine(DialogueScript.TypingText(4));
+                    break;
+                case DialoguePlace.Npc:
+                    DialogueScript.StartCoroutine(DialogueScript.TypingNpc(0, true));
                     break;
             }
         }
